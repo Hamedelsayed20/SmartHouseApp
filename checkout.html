@@ -9,7 +9,7 @@
   <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
   <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
   <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202601.2" />
 </head>
 <body>
 
@@ -89,15 +89,16 @@
               </div>
               <div class="col-md-6">
                 <label class="small fw-bold mb-1" for="cPhone">رقم الجوال *</label>
-                <input id="cPhone" class="form-control" required dir="ltr" placeholder="05XXXXXXXX" />
-                <div class="field-note small text-danger d-none">رقم جوال سعودي صحيح (05XXXXXXXX)</div>
+                <input id="cPhone" class="form-control" required dir="ltr" placeholder="01XXXXXXXXX" />
+                <div class="field-note small text-danger d-none">رقم موبايل مصري صحيح (01XXXXXXXXX)</div>
               </div>
               <div class="col-md-6">
                 <label class="small fw-bold mb-1" for="cCity">المدينة *</label>
                 <select id="cCity" class="form-select" required>
                   <option value="">اختر المدينة</option>
-                  <option>جدة</option><option>مكة المكرمة</option><option>الرياض</option>
-                  <option>الطائف</option><option>المدينة المنورة</option><option>أخرى</option>
+                  <option>طنطا</option><option>المحلة الكبرى</option><option>القاهرة</option>
+                  <option>الجيزة</option><option>الإسكندرية</option><option>المنصورة</option>
+                  <option>دمنهور</option><option>أخرى</option>
                 </select>
                 <div class="field-note small text-danger d-none">اختر المدينة</div>
               </div>
@@ -115,6 +116,7 @@
                   <label class="form-check-label small" for="cVisit">أرغب بمعاينة منزلية مجانية قبل التركيب النهائي</label>
                 </div>
               </div>
+              <div class="col-12" data-map="compact"></div>
             </div>
           </div>
 
@@ -122,99 +124,178 @@
           <div class="tile p-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <h2 class="h6 fw-bold mb-0"><i class="bi bi-credit-card-2-front text-gold me-1"></i> طريقة الدفع</h2>
-              <span class="badge badge-soft rounded-pill">وضع تجريبي</span>
+              <span class="badge badge-soft rounded-pill">وضع تجريبي — لا يُخصم أي مبلغ</span>
             </div>
 
             <div class="d-flex flex-column gap-3" id="payMethods">
-              <!-- بطاقة مصرفية -->
-              <label class="pay-card">
-                <input class="form-check-input mt-1" type="radio" name="pay" value="card" checked id="payCard" />
-                <span class="pay-ic"><i class="bi bi-credit-card"></i></span>
-                <span class="flex-grow-1">
-                  <span class="pay-t d-block">بطاقة مصرفية — مدى / Visa / Mastercard</span>
-                  <span class="pay-d d-block">دفع آمن ومشفّر عبر بوابة إلكترونية معتمدة (تجريبي).</span>
-                </span>
-              </label>
 
-              <!-- نموذج البطاقة (يظهر عند اختيار البطاقة) -->
-              <div id="cardFields" class="ms-2">
-                <div class="row g-2">
-                  <div class="col-12">
-                    <input class="form-control" id="cardNum" dir="ltr" inputmode="numeric"
-                      placeholder="•••• •••• •••• ••••" maxlength="19" autocomplete="off" />
-                  </div>
-                  <div class="col-7"><input class="form-control" id="cardName" placeholder="اسم صاحب البطاقة" /></div>
-                  <div class="col-5 input-group" style="direction:ltr">
-                    <input class="form-control" id="cardExp" placeholder="MM/YY" maxlength="5" />
-                    <input class="form-control" id="cardCvv" placeholder="CVV" maxlength="4" />
-                  </div>
-                  <div class="col-12 small text-muted-2">
-                    لا تخزّن معلومات حقيقية — هذه نسخة عرض فقط.
-                    عند الربط: تُستبدل بـ <code>POST /api/payments/create</code> مع بوابة (Moyasar / Tap / HyperPay).
+              <!-- 1) بطاقة مصرفية -->
+              <div class="pay-card" data-value="card">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-credit-card"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">Visa / Mastercard / مدى</span>
+                    <span class="pay-d d-block">دفع آمن ومشفّر عبر بوابة إلكترونية — النتيجة فورية.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="card" id="payCard" checked />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip mc"><span class="mc-c"></span>mastercard</span>
+                  <span class="chip visa">VISA</span>
+                </div>
+                <!-- نموذج البطاقة -->
+                <div id="cardFields" class="pay-extra">
+                  <div class="row g-2">
+                    <div class="col-12">
+                      <input class="form-control" id="cardNum" dir="ltr" inputmode="numeric"
+                        placeholder="•••• •••• •••• ••••" maxlength="19" autocomplete="off" />
+                    </div>
+                    <div class="col-7"><input class="form-control" id="cardName" placeholder="اسم صاحب البطاقة" /></div>
+                    <div class="col-5 input-group" style="direction:ltr">
+                      <input class="form-control" id="cardExp" placeholder="MM/YY" maxlength="5" />
+                      <input class="form-control" id="cardCvv" placeholder="CVV" maxlength="4" />
+                    </div>
+                    <div class="col-12 small text-muted-2">
+                      لا تخزّن معلومات حقيقية — هذه نسخة عرض فقط.
+                      عند الربط تُستبدل بـ <code>POST /api/payments/create</code>.
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- تحويل بنكي -->
-              <label class="pay-card">
-                <input class="form-check-input mt-1" type="radio" name="pay" value="bank" id="payBank" />
-                <span class="pay-ic"><i class="bi bi-bank"></i></span>
-                <span class="flex-grow-1">
-                  <span class="pay-t d-block">تحويل بنكي</span>
-                  <span class="pay-d d-block">تحويل على حساب المعروض ثم إرفاق سند التحويل.</span>
-                </span>
-              </label>
-              <div id="bankFields" class="ms-2 d-none">
-                <div class="bank-box">
-                  <div class="d-flex justify-content-between py-1"><span class="text-muted-2">اسم المستفيد</span><b>شركة سمارت هاوس للحلول</b></div>
-                  <div class="d-flex justify-content-between py-1"><span class="text-muted-2">اسم البنك</span><b>بنك تجريبي</b></div>
-                  <div class="d-flex justify-content-between py-1"><span class="text-muted-2">رقم الآيبان</span><b dir="ltr">SA00 0000 0000 0000 0000 0000</b></div>
-                  <div class="small text-muted-2 pt-1">بعد التحويل أرفق السند أو أرسله واتساب — يرفع الطلب «بانتظار الدفع».</div>
+              <!-- 2) أمان / مصاري -->
+              <div class="pay-card" data-value="aman">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-wallet2"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">أمان / مصاري</span>
+                    <span class="pay-d d-block">الدفع عبر شبكة أمان: فورًا بأي منفذ، أو حسب الأهلية.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="aman" id="payAman" />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip aman">أمان</span>
+                  <span class="chip masary">مصاري</span>
                 </div>
               </div>
 
-              <!-- Apple Pay -->
-              <label class="pay-card">
-                <input class="form-check-input mt-1" type="radio" name="pay" value="wallet" id="payWallet" />
-                <span class="pay-ic"><i class="bi bi-phone"></i></span>
-                <span class="flex-grow-1">
-                  <span class="pay-t d-block">محافظ رقمية — Apple Pay / STC Pay</span>
-                  <span class="pay-d d-block">دفع سريع بلمس واحد (تجريبي).</span>
-                </span>
-              </label>
+              <!-- 3) محافظ الموبايل -->
+              <div class="pay-card" data-value="wallet">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-phone"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">Mobile Wallets — محافظ الموبايل</span>
+                    <span class="pay-d d-block">دفع ضمن محفظتك الرقمية بلمس واحد.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="wallet" id="payWallet" />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip om">Orange Money</span>
+                  <span class="chip gcash">جواهر كاش</span>
+                  <span class="chip swallet">Smart Wallet</span>
+                  <span class="chip voda">vodafone</span>
+                  <span class="chip we">WE</span>
+                </div>
+              </div>
 
-              <!-- الدفع في المعرض -->
-              <label class="pay-card">
-                <input class="form-check-input mt-1" type="radio" name="pay" value="showroom" id="payShowroom" />
-                <span class="pay-ic"><i class="bi bi-shop"></i></span>
-                <span class="flex-grow-1">
-                  <span class="pay-t d-block">الدفع في المعرض عند الاستلام</span>
-                  <span class="pay-d d-block">تدفع نقدًا أو بالبطاقة عند التسليم في المعرض.</span>
-                </span>
-              </label>
+              <!-- 4) valU -->
+              <div class="pay-card" data-value="valu">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-calendar3"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">valU — تقسيط فوري</span>
+                    <span class="pay-d d-block">تقسيط حسب الأهلية — رد فوري على الطلب.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="valu" id="payValu" />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip valu">valU</span>
+                  <span class="small text-muted-2">تقسيط مباشر حسب خطة valU — <span class="badge badge-soft rounded-pill">تجريبي</span></span>
+                </div>
+              </div>
+
+              <!-- 5) التقسيط البنكي -->
+              <div class="pay-card" data-value="bankinst">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-bank"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">Bank Installments — تقسيط بنكي</span>
+                    <span class="pay-d d-block">تحويل إلى تقسيط مطول عبر البنوك المشاركة في النظام.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="bankinst" id="payBankinst" />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip bmisr">بنك مصر</span>
+                  <span class="chip mashreq">مشروع</span>
+                  <span class="chip cib">CIB</span>
+                  <span class="chip ahly">الأهلي</span>
+                </div>
+              </div>
+
+              <!-- 6) سهولة -->
+              <div class="pay-card" data-value="souhoola">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-stars"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">Souhoola — سهولة</span>
+                    <span class="pay-d d-block">تقسيط فوري بموافقة خلال لحظات وتفعيل حسب الخطة.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="souhoola" id="paySouhoola" />
+                </div>
+                <div class="pay-logos">
+                  <span class="chip souhoola">سهولة</span>
+                </div>
+              </div>
+
+              <!-- 7) الدفع عند الاستلام -->
+              <div class="pay-card" data-value="cod">
+                <div class="pay-head">
+                  <span class="pay-ic"><i class="bi bi-cash-stack"></i></span>
+                  <span class="flex-grow-1">
+                    <span class="pay-t d-block">الدفع نقدًا عند الاستلام</span>
+                    <span class="pay-d d-block">تدفع نقدًا أو بالبطاقة بعد التسليم والتركيب.</span>
+                  </span>
+                  <input class="form-check-input pay-radio" type="radio" name="pay" value="cod" id="payCod" />
+                </div>
+                <div class="pay-logos">
+                  <span class="small text-muted-2"><i class="bi bi-shield-check text-gold me-1"></i> أقصى أمان — لا تنتقل أي بيانات بنكية</span>
+                </div>
+              </div>
+
+              <!-- ملاحظة تتبدل حسب الطريقة المختارة -->
+              <div id="payNote" class="bank-box d-none" aria-live="polite"></div>
             </div>
           </div>
         </div>
 
-        <!-- ملخص الطلب -->
+        <!-- ملخص الدفع -->
         <div class="col-lg-5">
           <div class="tile p-4" style="position:sticky;top:110px">
-            <h2 class="h6 fw-bold mb-3"><i class="bi bi-receipt text-gold me-1"></i> ملخص الطلب</h2>
-            <div id="coItems" class="mb-3"></div>
-            <div class="d-flex justify-content-between small mb-1">
-              <span class="text-muted-2">عدد القطع</span><span id="coCount">0</span>
-            </div>
-            <div class="d-flex justify-content-between small mb-1">
-              <span class="text-muted-2">المعينة المنزلية</span><span class="text-gold-2">مجانًا</span>
-            </div>
-            <hr style="border-color:var(--line)" />
-            <div class="d-flex justify-content-between align-items-center">
-              <span class="fw-bold">التقدير المبدئي</span>
-              <span id="coTotal" class="fw-bold text-gold" style="font-size:1.25rem">0 ر.س</span>
-            </div>
-            <div class="small text-muted-2 mt-1 mb-3">السعر النهائي بعد المعاينة والقياس الفعلي.</div>
+            <h2 class="h6 fw-bold mb-3"><i class="bi bi-receipt text-gold me-1"></i> ملخص الدفع</h2>
+            <div id="coItems" class="mb-2"></div>
 
-            <div class="form-check small mb-3">
+            <div class="sum-row">
+              <span class="s-label">المجموع</span>
+              <span id="coSub" class="fw-bold">0 ج.م</span>
+            </div>
+            <div class="sum-row">
+              <span class="s-label">الشحن (معاينة وتركيب)</span>
+              <span id="coShip" class="fw-bold">0 ج.م</span>
+            </div>
+            <div class="sum-row small">
+              <span class="s-label">المعاينة المنزلية</span>
+              <span class="text-gold-2">مجانًا</span>
+            </div>
+
+            <hr style="border-color:var(--line)" />
+
+            <div class="sum-row sum-total">
+              <span class="s-label">الإجمالي</span>
+              <span id="coTotal" class="s-value">0 ج.م</span>
+            </div>
+            <div class="small text-muted-2 mt-1">التقدير المبدئي — السعر النهائي بعد القياس الفعلي والمعاينة.</div>
+
+            <div class="form-check small mb-3 mt-3">
               <input class="form-check-input" type="checkbox" id="cTerms" required />
               <label class="form-check-label text-muted-2" for="cTerms">
                 أوافق على شروط الطلب وسياسة الاستبدال (معاينة مجانية قبل التصنيع).
@@ -222,16 +303,26 @@
               <div class="field-note small text-danger d-none">يجب الموافقة على الشروط</div>
             </div>
 
-            <button type="submit" class="btn btn-gold btn-lg w-100" id="btnPlaceOrder">
-              <i class="bi bi-shield-lock me-1"></i> تأكيد الطلب
-            </button>
-            <div class="small text-muted-2 mt-3 d-flex align-items-center gap-2">
-              <i class="bi bi-lock text-gold"></i>
-              اتصال مشفّر — عند التفعيل تُدار المدفوعات عبر بوابة معتمدة من وزارة التجارة.
+            <div class="small text-muted-2 d-flex align-items-start gap-2">
+              <i class="bi bi-lock text-gold mt-1"></i>
+              <span>اتصال مشفّر — عند التفعيل تُدار المدفوعات عبر بوابة معتمدة ومزودي التحصيل الموضحين.</span>
             </div>
           </div>
         </div>
       </form>
+
+      <!-- ⬇ الشريط الثابت (مثل صورة المثال: الدفع عند التسليم مباشرةً) -->
+      <div class="checkout-bar d-none" id="checkoutBar">
+        <div class="container d-flex justify-content-between align-items-center gap-3">
+          <div>
+            <span class="cb-t" id="barNote">الدفع عند التسليم مباشرةً.</span>
+            <span class="cb-v" id="barTotal">0 ج.م</span>
+          </div>
+          <button type="submit" form="checkoutForm" class="btn btn-gold btn-lg flex-shrink-0" id="btnPlaceOrder">
+            <i class="bi bi-shield-lock me-1"></i> تأكيد الطلب والدفع
+          </button>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -245,8 +336,9 @@
   </footer>
 
   <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/products.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/products.js?v=202601.2"></script>
+  <script src="assets/js/app.js?v=202601.2"></script>
+  <script src="assets/js/whatsapp-widget.js?v=202601.2"></script>
   <script>
     (function () {
       "use strict";
@@ -254,46 +346,82 @@
       const form = document.getElementById("checkoutForm");
       const empty = document.getElementById("checkoutEmpty");
       const cardFields = document.getElementById("cardFields");
-      const bankFields = document.getElementById("bankFields");
-      const methods = document.getElementById("payMethods");
+      const payNote = document.getElementById("payNote");
+      const methodsBox = document.getElementById("payMethods");
+      const bar = document.getElementById("checkoutBar");
+      const barNote = document.getElementById("barNote");
+      const barTotal = document.getElementById("barTotal");
       const btn = document.getElementById("btnPlaceOrder");
+
+      /* الشحن: مبلغ ثابت تجريبي (يُحسب نهائيًا بعد المعاينة) */
+      const SHIPPING = 380;
 
       /* حالة صفحة الطلب */
       const hasItems = getCart().length > 0;
       form.classList.toggle("d-none", !hasItems);
       empty.classList.toggle("d-none", hasItems);
+      bar.classList.toggle("d-none", !hasItems);
+      document.body.classList.toggle("co-open", hasItems);
+      document.body.classList.toggle("wa-lift", hasItems);
 
-      /* ملخص الطلب */
+      /* ملخص الدفع (صيغة جدول منتجات + مجمّع + شحن + إجمالي) */
       function renderSummary() {
         const cart = getCart();
         document.getElementById("coItems").innerHTML = cart.map(i => {
           const p = PRODUCTS.find(x => x.id === i.id);
+          if (!p) return ""; /* سلة تحتوي معرّفًا غير موجود — تخطَّ بأمان */
           return `
           <div class="d-flex align-items-center gap-2 py-2" style="border-bottom:1px solid var(--line)">
             <img src="${placeholder(p)}" ${imgFallback(p)} alt="" style="width:52px;height:44px;border-radius:8px;object-fit:cover" />
             <div class="flex-grow-1 small">
-              <div class="fw-bold">${p.name}</div>
-              <span class="text-muted-2">${formatPrice(p.priceFrom)} × ${i.qty}</span>
+              <div class="fw-bold">${p.name} <span class="text-muted-2">— كود:${p.sku} × ${i.qty}</span></div>
             </div>
             <b class="text-nowrap">${formatPrice(p.priceFrom * i.qty)} ${CURRENCY}</b>
           </div>`;
         }).join("");
-        document.getElementById("coCount").textContent = cartCount();
-        document.getElementById("coTotal").textContent = formatPrice(cartTotal()) + " " + CURRENCY;
+        const sub = cartTotal();
+        document.getElementById("coSub").textContent = formatPrice(sub) + " " + CURRENCY;
+        document.getElementById("coShip").textContent = formatPrice(SHIPPING) + " " + CURRENCY;
+        document.getElementById("coTotal").textContent = formatPrice(sub + SHIPPING) + " " + CURRENCY;
+        barTotal.textContent = formatPrice(sub + SHIPPING) + " " + CURRENCY;
       }
       renderSummary();
 
-      /* تبديل طرق الدفع */
-      methods.addEventListener("change", () => {
-        const val = document.querySelector('input[name="pay"]:checked').value;
+      /* ملاحظات وشرح كل طريقة دفع */
+      const PAY_TEXT = {
+        card:     { note: "",                               bar: "الدفع الآمن عبر البوابة — فوري." },
+        aman:     { note: "بعد التأكيد يظهر لك «كود دفع» تستخدمه في أي منفذ أمان/مصاري قريب — (تجريبي).", bar: "يتم التأكيد فورًا عبر شبكة أمان." },
+        wallet:   { note: "بعد التأكيد يصل طلب الدفع داخل تطبيق محفظتك — (تجريبي).", bar: "الدفع من المحفظة بلمس واحد." },
+        valu:     { note: "تُقيّم الأهلية لحظيًا ثم تُحدد قيمة القسط الشهري — (تظهر النتيجة التجريبية هنا).", bar: "تقسيط فوري عبر valU." },
+        bankinst: { note: "يتم توجيهك لتطبيق البنك لتأكيد خطة التقسيط — (تجريبي).", bar: "تحويل الطلب لتقسيط بنكي." },
+        souhoola: { note: "موافقة فورية على خطة أقساط سهولة ضمن حدك المتاح — (تجريبي).", bar: "تقسيط فوري عبر سهولة." },
+        cod:      { note: "يحفظ الطلب بحالة «بانتظار الدفع» ويُستوفى المبلغ نقدًا أو بالبطاقة عند الاستلام.", bar: "الدفع نقدًا عند الاستلام مباشرةً." }
+      };
+
+      /* اختيار الطريقة بالنقر على البطاقة كاملة */
+      function currentMethod() {
+        return document.querySelector('input[name="pay"]:checked').value;
+      }
+      function applyMethod(val) {
+        document.querySelectorAll(".pay-card").forEach(pc => {
+          const checked = pc.dataset.value === val;
+          pc.classList.toggle("active", checked);
+          const r = pc.querySelector(".pay-radio");
+          if (r.checked !== checked) r.checked = checked;
+        });
         cardFields.classList.toggle("d-none", val !== "card");
-        bankFields.classList.toggle("d-none", val !== "bank");
-        document.querySelectorAll(".pay-card").forEach(pc =>
-          pc.classList.toggle("active", pc.querySelector("input").checked));
+        const t = PAY_TEXT[val];
+        payNote.classList.toggle("d-none", !t.note);
+        payNote.textContent = t.note;
+        barNote.textContent = t.bar;
+      }
+      methodsBox.addEventListener("click", (e) => {
+        if (e.target.closest("#cardFields")) return; /* النقر داخل حقول البطاقة لا يبدّل الاختيار */
+        const card = e.target.closest(".pay-card");
+        if (!card) return;
+        applyMethod(card.dataset.value);
       });
-      /* حالة البداية */
-      document.querySelectorAll(".pay-card").forEach(pc =>
-        pc.classList.toggle("active", pc.querySelector("input").checked));
+      applyMethod("card");
 
       /* تنسيق حقول البطاقة (عرض فقط) */
       document.getElementById("cardNum").addEventListener("input", e => {
@@ -316,10 +444,10 @@
         e.preventDefault();
         let ok = true;
         ok = err(document.getElementById("cName"), !document.getElementById("cName").value.trim(), "الاسم مطلوب") && ok;
-        ok = err(document.getElementById("cPhone"), !/^05\d{8}$/.test(document.getElementById("cPhone").value.trim()), "رقم جوال سعودي (05XXXXXXXX)") && ok;
+        ok = err(document.getElementById("cPhone"), !/^01[0125]\d{8}$/.test(document.getElementById("cPhone").value.trim()), "رقم موبايل مصري (01XXXXXXXXX)") && ok;
         ok = err(document.getElementById("cCity"), !document.getElementById("cCity").value, "اختر المدينة") && ok;
 
-        const payMethod = document.querySelector('input[name="pay"]:checked').value;
+        const payMethod = currentMethod();
         if (payMethod === "card") {
           const num = document.getElementById("cardNum").value.replace(/\s/g, "");
           ok = err(document.getElementById("cardNum"), num.length !== 16, "") && ok;
@@ -332,28 +460,35 @@
 
         if (!ok) { window.scrollTo({ top: document.querySelector(".is-invalid").offsetTop - 160, behavior: "smooth" }); return; }
 
-        /* حالة التحميل ثم إنشاء الطلب (تجريبي) */
+        /* حالة التحميل — نص أعمدة حسب الطريقة */
         btn.disabled = true;
-        btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> جارٍ تأكيد الدفع…';
+        btn.innerHTML = payMethod === "cod"
+          ? '<span class="spinner-border spinner-border-sm me-2"></span> جارٍ تأكيد الطلب…'
+          : '<span class="spinner-border spinner-border-sm me-2"></span> جارٍ تأكيد الدفع…';
 
         /* فعليًا:
            1) POST /api/payments/create  → { paymentIntentId }
            2) POST /api/orders           → { id, status } */
         setTimeout(() => {
           const payLabels = {
-            card: "بطاقة مصرفية — " + (document.getElementById("cardName").value.trim() || "مدى"),
-            bank: "تحويل بنكي",
-            wallet: "محفظة رقمية",
-            showroom: "الدفع في المعرض"
+            card:     "بطاقة Visa/Mastercard — " + (document.getElementById("cardName").value.trim() || "مدى"),
+            aman:     "أمان / مصاري",
+            wallet:   "محفظة موبايل",
+            valu:     "تقسيط valU",
+            bankinst: "تقسيط بنكي",
+            souhoola: "تقسيط سهولة",
+            cod:      "نقدًا عند الاستلام"
           };
+          /* فوري → قيد التنفيذ؛ عند الاستلام → بانتظار الدفع */
+          const status = payMethod === "cod" ? "بانتظار الدفع" : "قيد التنفيذ";
           const orders = getOrders();
           orders.unshift({
             id: "ORD-2026-" + (1064 + orders.length),
             date: new Date().toISOString().slice(0, 10),
-            items: getCart(), total: cartTotal(),
+            items: getCart(), total: cartTotal() + SHIPPING,
             payment: payLabels[payMethod],
             city: document.getElementById("cCity").value,
-            status: payMethod === "card" || payMethod === "wallet" ? "قيد التنفيذ" : "بانتظار الدفع",
+            status: status,
             visit: document.getElementById("cVisit").checked,
             note: document.getElementById("cNote").value.trim()
           });

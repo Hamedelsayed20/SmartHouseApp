@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
   <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
   <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202601.2" />
 </head>
 <body>
 
@@ -109,7 +109,7 @@
 
           <!-- نطاق السعر -->
           <div class="col-md-4 col-lg-4">
-            <div class="mb-2 small text-muted-2">نطاق السعر (<span class="text-gold">ر.س</span>)</div>
+            <div class="mb-2 small text-muted-2">نطاق السعر (<span class="text-gold">ج.م</span>)</div>
             <div class="d-flex gap-2 align-items-center">
               <input id="priceMin" type="number" min="0" step="100" class="form-control" placeholder="من" aria-label="أقل سعر" />
               <span class="text-muted-2">—</span>
@@ -147,7 +147,8 @@
         <div class="tile py-5">
           <i class="bi bi-funnel text-gold" style="font-size:2.4rem"></i>
           <h2 class="h5 fw-bold mt-3">لا توجد نتائج مطابقة</h2>
-          <p class="text-muted-2 mb-3">جرّب توسيع الفلاتر أو إزالة بعض الشروط.</p>
+          <p class="text-muted-2 mb-2">جرّب توسيع الفلاتر أو إزالة بعض الشروط.</p>
+          <p class="small text-gold mb-3" id="emptyHint"></p>
           <button type="button" class="btn btn-outline-gold" id="btnResetEmpty">إعادة ضبط الفلاتر</button>
         </div>
       </div>
@@ -166,8 +167,9 @@
 
   <!-- المكتبات والبيانات — كلها محلية -->
   <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/products.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/products.js?v=202601.2"></script>
+  <script src="assets/js/app.js?v=202601.2"></script>
+  <script src="assets/js/whatsapp-widget.js?v=202601.2"></script>
   <script>
     (function () {
       "use strict";
@@ -178,18 +180,52 @@
          ============================================================ */
       const state = { cat: "all", material: "all", sort: "relevance", q: "", minPrice: null, maxPrice: null };
 
-      /* تعبئة فلتر الخامات ديناميكيًا (يقابل SELECT DISTINCT Material) */
+      /* تعبئة فلتر الخامات ديناميكيًا (يقابل SELECT DISTINCT Material)
+         — تصفية متداخلة: تعرض الخامات المتاحة درازود الفئة النشطة فقط مع العدّاد */
       const materialSelect = document.getElementById("materialFilter");
-      [...new Set(PRODUCTS.map(p => p.material))].forEach(m => {
-        const o = document.createElement("option");
-        o.value = m; o.textContent = m;
-        materialSelect.appendChild(o);
-      });
+
+      function refreshMaterialFilter() {
+        const pool = PRODUCTS.filter(p => state.cat === "all" || p.category === state.cat);
+        const mats = [...new Set(pool.map(p => p.material))];
+        materialSelect.innerHTML = "";
+
+        const all = document.createElement("option");
+        all.value = "all";
+        all.textContent = state.cat === "all" ? "كل الخامات" : "كل الخامات المتاحة";
+        materialSelect.appendChild(all);
+
+        mats.forEach(m => {
+          const n = pool.filter(p => p.material === m).length;
+          const o = document.createElement("option");
+          o.value = m; o.textContent = m + " (" + n + ")";
+          materialSelect.appendChild(o);
+        });
+
+        /* إن لم تعد الخامة المختارة متاحة في الفئة الجديدة نعيد الضبط */
+        if (!mats.includes(state.material)) state.material = "all";
+        materialSelect.value = state.material;
+      }
+      refreshMaterialFilter();
+
+      /* عدّادات تلقائية على شرائح الفئات */
+      function refreshCatCounts() {
+        document.querySelectorAll("#catChips .chip").forEach(c => {
+          const cat = c.dataset.cat;
+          const n = cat === "all"
+            ? PRODUCTS.length
+            : PRODUCTS.filter(p => p.category === cat).length;
+          let b = c.querySelector(".chip-count");
+          if (!b) { b = document.createElement("span"); b.className = "chip-count"; c.appendChild(b); }
+          b.textContent = " " + n;
+        });
+      }
+      refreshCatCounts();
 
       /* قراءة ?cat= من الرابط (يقابلها في Angular: ActivatedRoute.queryParams) */
       const urlCat = new URLSearchParams(location.search).get("cat");
       if (urlCat === "doors" || urlCat === "kitchens") {
         state.cat = urlCat;
+        refreshMaterialFilter(); /* خامات الفئة الواردة من الرابط */
         const navLink = document.querySelector(
           urlCat === "doors" ? ".js-nav-doors" : ".js-nav-kitchens");
         if (navLink) navLink.classList.add("active");
@@ -205,6 +241,7 @@
         document.querySelectorAll("#catChips .chip").forEach(c => c.classList.remove("active"));
         chip.classList.add("active");
         state.cat = chip.dataset.cat;
+        refreshMaterialFilter(); /* تصفية متسلسلة: خامات الفئة الجديدة فقط */
         apply();
       });
 
@@ -249,7 +286,7 @@
         state.cat = "all"; state.material = "all"; state.sort = "relevance";
         state.q = ""; state.minPrice = null; state.maxPrice = null;
         document.getElementById("searchBox").value = "";
-        materialSelect.value = "all";
+        refreshMaterialFilter();
         document.getElementById("sortFilter").value = "relevance";
         priceMin.value = ""; priceMax.value = "";
         document.querySelectorAll("#catChips .chip").forEach(c =>
@@ -286,6 +323,18 @@
         document.getElementById("emptyState").classList.toggle("d-none", list.length > 0);
         document.getElementById("resultCount").textContent =
           "عرض " + list.length + " من " + PRODUCTS.length + " تصميمًا";
+
+        /* تلميح ذكي حسب الفلاتر الفعالة */
+        const hint = document.getElementById("emptyHint");
+        if (list.length === 0 && state.material !== "all") {
+          hint.textContent = state.cat !== "all"
+            ? "الخامة المختارة غير متاحة ضمن هذه الفئة — اختر «كل الخامات المتاحة» أو فئة أخرى."
+            : "الخامة المختارة نادرة — جرّب «كل الخامات» أو أزل فلتر السعر.";
+        } else if (list.length === 0 && (state.minPrice !== null || state.maxPrice !== null)) {
+          hint.textContent = "لا توجد تصاميم في نطاق السعر الحالي — جرّب «إزالة السعر» أو توسيع النطاق.";
+        } else {
+          hint.textContent = "";
+        }
 
         /* إعادة مزامنة أزرار المقارنة مع الحالة الحالية */
         grid.querySelectorAll(".product-card").forEach(card => {

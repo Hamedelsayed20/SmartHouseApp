@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -11,7 +11,7 @@
   <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
   <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
   <link rel="stylesheet" href="assets/vendor/fonts/cairo.css" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202601.2" />
 </head>
 <body>
 
@@ -319,6 +319,18 @@
     </div>
   </section>
 
+  <!-- ================= موقع المعرض ================= -->
+  <section id="location" class="py-5">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="eyebrow">موقعنا</span>
+        <h2 class="section-title h3 mb-2">زُر معرضنا في كورنيش المرشحة</h2>
+        <p class="section-sub mx-auto mb-0">معاينة التصاميم عينًا وعلى الطبيعة — المعرض بجوار صيدلية الطرشوبي، مواقف متاحة أمام الواجهة.</p>
+      </div>
+      <div data-map></div>
+    </div>
+  </section>
+
   <!-- ================= دعوة أخيرة ================= -->
   <section class="py-5">
     <div class="container">
@@ -344,7 +356,7 @@
             <span>سمارت <span class="text-gold">هوس</span></span>
           </a>
           <p class="text-muted-2 small">
-            كتالوج فاخر للأبواب والمطابخ في جدة — نهتم بالخامات الحقيقية والمقاسات الدقيقة
+            كتالوج فاخر للأبواب والمطابخ في طنطا — نهتم بالخامات الحقيقية والمقاسات الدقيقة
             وعروض أسعار واضحة مكتوبة.
           </p>
         </div>
@@ -369,9 +381,9 @@
         <div class="col-lg-4">
           <h6>تواصل معنا</h6>
           <ul class="list-unstyled small text-muted-2">
-            <li class="mb-2"><i class="bi bi-geo-alt text-gold me-2"></i> جدة — طريق الملك، معرض سمارت هوس</li>
-            <li class="mb-2"><i class="bi bi-telephone text-gold me-2"></i> <span dir="ltr">+966 55 123 4567</span></li>
-            <li class="mb-2"><i class="bi bi-envelope text-gold me-2"></i> sales@timberline.sa</li>
+            <li class="mb-2"><i class="bi bi-geo-alt text-gold me-2"></i> <a href="https://maps.google.com/maps?q=30.79616928100586%2C31.01157569885254&z=17&hl=en" target="_blank" rel="noopener" class="text-muted-2 map-footer-link">كورنيش المرشحة بجوار صيدلية الطرشوبي</a></li>
+            <li class="mb-2"><i class="bi bi-telephone text-gold me-2"></i> <a href="tel:01099999999" class="text-muted-2 map-footer-link" style="text-decoration:none"><span dir="ltr">01099999999</span></a></li>
+            <li class="mb-2"><i class="bi bi-envelope text-gold me-2"></i> <a href="mailto:sales@smarthouse.eg" class="text-muted-2" style="text-decoration:none" dir="ltr">sales@smarthouse.eg</a></li>
             <li><i class="bi bi-clock text-gold me-2"></i> السبت–الخميس: 9ص – 10م</li>
           </ul>
         </div>
@@ -386,8 +398,9 @@
 
   <!-- ============== الروائح JS ============== -->
   <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/products.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/products.js?v=202601.2"></script>
+  <script src="assets/js/app.js?v=202601.2"></script>
+  <script src="assets/js/whatsapp-widget.js?v=202601.2"></script>
   <script>
     /* البطاقات المختارة */
     /* صفان: الصف الأول الأكثر مشاهدة (متنوع) + الصف الثاني 4 أبواب
@@ -414,6 +427,7 @@
     /* لوحة المقارنة */
     compareBarInit();
   </script>
+
 </body>
 </html>
 

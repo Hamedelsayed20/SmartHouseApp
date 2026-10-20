@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
 
   <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
   <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=202601.2" />
 </head>
 <body>
 
@@ -91,14 +91,14 @@
             <div class="row g-3">
               <div class="col-md-6">
                 <label class="form-label" for="fName">الاسم الكامل *</label>
-                <input id="fName" name="fullName" class="form-control" required minlength="3" placeholder="مثال: عبدالله الحربي" />
+                <input id="fName" name="fullName" class="form-control" required minlength="3" placeholder="مثال: محمود الطرشوبي" />
                 <div class="invalid-feedback">أدخل اسمك (3 أحرف على الأقل).</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="fPhone">رقم الجوال *</label>
                 <input id="fPhone" name="phone" class="form-control" dir="ltr" required
-                  pattern="^(\+966|0)5\d{8}$" placeholder="+966 5X XXX XXXX" />
-                <div class="invalid-feedback">رقم سعودي صحيح مثل: 0512345678.</div>
+                  pattern="^01[0125]\d{8}$" placeholder="01X XXXX XXXX" />
+                <div class="invalid-feedback">رقم موبايل مصري صحيح مثل: 01012345678.</div>
               </div>
               <div class="col-md-6">
                 <label class="form-label" for="fEmail">البريد الإلكتروني (اختياري)</label>
@@ -109,8 +109,9 @@
                 <label class="form-label" for="fCity">المدينة *</label>
                 <select id="fCity" name="city" class="form-select" required>
                   <option value="">اختر المدينة…</option>
-                  <option>جدة</option><option>الرياض</option><option>مكة المكرمة</option>
-                  <option>المدينة المنورة</option><option>الدمام</option><option>أخرى</option>
+                  <option>طنطا</option><option>المحلة الكبرى</option><option>القاهرة</option>
+                  <option>الجيزة</option><option>الإسكندرية</option><option>المنصورة</option>
+                  <option>دمنهور</option><option>أخرى</option>
                 </select>
                 <div class="invalid-feedback">اختر المدينة.</div>
               </div>
@@ -131,6 +132,9 @@
             </div>
           </form>
         </div>
+
+        <!-- موقع المعرض للاستلام/المعاينة -->
+        <div data-map class="mt-3"></div>
       </div>
 
       <!-- ============ شاشة النجاح ============ -->
@@ -175,8 +179,9 @@
   </footer>
 
   <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/products.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/products.js?v=202601.2"></script>
+  <script src="assets/js/app.js?v=202601.2"></script>
+  <script src="assets/js/whatsapp-widget.js?v=202601.2"></script>
   <script>
     /* =====================================================
        حالات الطلب — يقابلها في Backend: QuoteRequest DTO
