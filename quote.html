@@ -1,0 +1,381 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <title>طلب عرض سعر — سمارت هوس</title>
+  <meta name="description" content="أرسل طلب عرض سعر للأبواب والمطابخ: اختر التصاميم، حدد التشطيب والقياسات، واملأ بيانات التواصل — الرد خلال 48 ساعة عمل." />
+
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="brand-logo" />
+          <span>سمارت <span class="text-gold">هوس</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-label="القائمة"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=doors">الأبواب</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=kitchens">المطابخ</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#materials">الخامات والتشطيبات</a></li>
+            <li class="nav-item ms-1"><a href="cart.html" class="cart-link" style="width:42px;height:42px;border-radius:11px" aria-label="سلة المشتريات" title="سلة المشتريات"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.2 8.3h13.6l-1.1 11.1a2.3 2.3 0 0 1-2.3 2.1H8.6a2.3 2.3 0 0 1-2.3-2.1L5.2 8.3Z"/><path d="M8.9 8.2V6.7a3.1 3.1 0 0 1 6.2 0v1.5"/><path d="M9.3 12.2v4.3M14.7 12.2v4.3" opacity=".55"/></svg><span class="cart-badge d-none">0</span></a></li>
+            <li class="nav-item"><a class="nav-link active" href="quote.html">طلب عرض سعر</a></li>
+                      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> حسابي
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" id="accountMenu">
+                <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-left me-2"></i> تسجيل الدخول</a></li>
+                <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i> إنشاء حساب</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="py-4">
+    <div class="container" style="max-width:920px">
+
+      <div class="text-center mb-4 reveal visible">
+        <span class="eyebrow">نموذج واحد لكل التصاميم</span>
+        <h1 class="section-title h2 mb-1">طلب عرض سعر</h1>
+        <p class="section-sub mx-auto mb-0">
+          ثلاث خطوات قصيرة. يعتمد السعر النهائي على المعاينة الفعلية للقياسات — هذا الطلب غير ملزم.
+        </p>
+      </div>
+
+      <!-- مؤشر الخطوات -->
+      <div class="wizard-steps justify-content-center" id="wizardSteps">
+        <div class="wizard-step active" data-step="1"><span class="num">1</span> التصاميم المطلوبة</div>
+        <div class="wizard-step" data-step="2"><span class="num">2</span> التشطيب والقياسات</div>
+        <div class="wizard-step" data-step="3"><span class="num">3</span> بيانات التواصل</div>
+      </div>
+
+      <!-- ============ الخطوة 1: اختيار المنتجات ============ -->
+      <div class="wizard-pane" data-pane="1">
+        <div class="tile p-4">
+          <h2 class="h5 fw-bold mb-1">اختر التصاميم المطلوبة</h2>
+          <p class="small text-muted-2 mb-3">اضغط على البطاقة لاختيارها. يمكنك طلب أكثر من تصميم في نفس العرض.</p>
+          <div class="row g-3" id="pickGrid">
+            <!-- تُحقن البطاقات القابلة للاختيار بـ JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- ============ الخطوة 2: التخصيص لكل منتج ============ -->
+      <div class="wizard-pane d-none" data-pane="2">
+        <div class="tile p-4">
+          <h2 class="h5 fw-bold mb-1">حدد التشطيب والقياس لكل تصميم</h2>
+          <p class="small text-muted-2 mb-3">هذه القياسات أولية — تعتمد نهائيًا بعد المعاينة المنزلية المجانية.</p>
+          <div class="row g-3" id="customizeGrid"><!-- تُحقن بـ JS --></div>
+        </div>
+      </div>
+
+      <!-- ============ الخطوة 3: بيانات التواصل ============ -->
+      <div class="wizard-pane d-none" data-pane="3">
+        <div class="tile p-4">
+          <h2 class="h5 fw-bold mb-3">بيانات التواصل وعنوان المعاينة</h2>
+          <form id="quoteForm" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="fName">الاسم الكامل *</label>
+                <input id="fName" name="fullName" class="form-control" required minlength="3" placeholder="مثال: عبدالله الحربي" />
+                <div class="invalid-feedback">أدخل اسمك (3 أحرف على الأقل).</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fPhone">رقم الجوال *</label>
+                <input id="fPhone" name="phone" class="form-control" dir="ltr" required
+                  pattern="^(\+966|0)5\d{8}$" placeholder="+966 5X XXX XXXX" />
+                <div class="invalid-feedback">رقم سعودي صحيح مثل: 0512345678.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fEmail">البريد الإلكتروني (اختياري)</label>
+                <input id="fEmail" name="email" type="email" class="form-control" dir="ltr" placeholder="you@example.com" />
+                <div class="invalid-feedback">بريد إلكتروني غير صحيح.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fCity">المدينة *</label>
+                <select id="fCity" name="city" class="form-select" required>
+                  <option value="">اختر المدينة…</option>
+                  <option>جدة</option><option>الرياض</option><option>مكة المكرمة</option>
+                  <option>المدينة المنورة</option><option>الدمام</option><option>أخرى</option>
+                </select>
+                <div class="invalid-feedback">اختر المدينة.</div>
+              </div>
+              <div class="col-12">
+                <label class="form-label" for="fNote">ملاحظات أو طلبات خاصة</label>
+                <textarea id="fNote" name="notes" class="form-control" rows="3"
+                  placeholder="مثال: أحتاج تثبيت قبل شهر رمضان، أو لديّ زوايا غير قياسية…"></textarea>
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="fAgree" required />
+                  <label class="form-check-label small" for="fAgree">
+                    أوافق على أن يتواصل معي فريق المبيعات بشأن هذا الطلب، والتوقيت المرن للمعاينة المنزلية.
+                  </label>
+                  <div class="invalid-feedback">يجب الموافقة للإرسال.</div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ============ شاشة النجاح ============ -->
+      <div class="wizard-pane d-none" data-pane="done">
+        <div class="tile p-5 text-center">
+          <i class="bi bi-check-circle-fill" style="font-size:3rem;color:var(--success)"></i>
+          <h2 class="h4 fw-bold mt-3 mb-2">تم استلام طلبك بنجاح</h2>
+          <p class="text-muted-2">
+            رقم الطلب: <strong class="text-gold" id="refNum">—</strong><br />
+            سيتواصل معك فريق المبيعات خلال <strong class="text-gold">48 ساعة عمل</strong> لتأكيد التفاصيل
+            وتحديد موعد المعاينة المنزلية المجانية.
+          </p>
+          <div class="d-flex gap-2 justify-content-center flex-wrap mt-3">
+            <a href="catalog.html" class="btn btn-outline-gold">متابعة التصفح</a>
+            <a href="index.html" class="btn btn-gold">الصفحة الرئيسية</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- أزرار التنقل -->
+      <div class="d-flex justify-content-between mt-4">
+        <button class="btn btn-outline-gold" id="btnPrev" disabled>
+          <i class="bi bi-arrow-right me-1"></i> السابق
+        </button>
+        <button class="btn btn-gold" id="btnNext">التالي <i class="bi bi-arrow-left me-1"></i></button>
+      </div>
+
+      <!-- موجز الطلب الحي -->
+      <div class="tile mt-4 p-3 d-none" id="summaryTile">
+        <div class="small fw-bold mb-2"><i class="bi bi-receipt text-gold me-1"></i> موجز الطلب الحالي</div>
+        <div id="summaryBody" class="small text-muted-2"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer pt-4 mt-5">
+    <div class="container">
+      <div class="footer-bottom py-3">
+        <span>© 2026 سمارت هوس — جميع الحقوق محفوظة</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    /* =====================================================
+       حالات الطلب — يقابلها في Backend: QuoteRequest DTO
+       (Items: [{productId, finish, widthCm, heightCm, qty}])
+       ===================================================== */
+    const REQUEST = { items: [], customer: {} };
+    let step = 1;
+
+    /* منتج قد يُمرر مسبقًا من صفحة المنتج: ?id=&finish=&w=&h=&qty= */
+    const qp = new URLSearchParams(location.search);
+    const preId = Number(qp.get("id"));
+    if (preId && PRODUCTS.some(p => p.id === preId)) {
+      REQUEST.items.push({
+        productId: preId,
+        finish: qp.get("finish") || PRODUCTS.find(p => p.id === preId).finish,
+        widthCm: qp.get("w") || "",
+        heightCm: qp.get("h") || "",
+        qty: Number(qp.get("qty")) || 1
+      });
+    }
+
+    /* ============ الخطوة 1: الاختيار ============ */
+    const pickGrid = document.getElementById("pickGrid");
+    function renderPick() {
+      pickGrid.innerHTML = PRODUCTS.map(p => {
+        const on = REQUEST.items.some(i => i.productId === p.id);
+        return `
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="pick-product ${on ? "selected" : ""}" data-id="${p.id}" role="button" tabindex="0">
+            <img src="${placeholder(p)}" alt="" class="rounded w-100 mb-2" style="aspect-ratio:4/3;object-fit:cover" />
+            <div class="small fw-bold mb-1">${p.name.split("—")[0].trim()}</div>
+            <div class="small text-muted-2">${p.material}</div>
+            <div class="small text-gold mt-1">من ${formatPrice(p.priceFrom)} ${CURRENCY}</div>
+            <div class="mt-2"><span class="badge ${on ? "badge-gold" : "badge-soft"} rounded-pill">
+              ${on ? "✓ مختار" : "غير مختار"}</span></div>
+          </div>
+        </div>`;
+      }).join("");
+    }
+
+    pickGrid.addEventListener("click", e => {
+      const card = e.target.closest(".pick-product");
+      if (!card) return;
+      togglePick(Number(card.dataset.id));
+    });
+    pickGrid.addEventListener("keydown", e => {
+      if (e.key !== "Enter") return;
+      const card = e.target.closest(".pick-product");
+      if (card) togglePick(Number(card.dataset.id));
+    });
+
+    function togglePick(id) {
+      const idx = REQUEST.items.findIndex(i => i.productId === id);
+      if (idx >= 0) REQUEST.items.splice(idx, 1);
+      else {
+        const p = PRODUCTS.find(x => x.id === id);
+        REQUEST.items.push({ productId: id, finish: p.finish, widthCm: "", heightCm: "", qty: 1 });
+      }
+      renderPick();
+      renderCustomize();
+      refreshSummary();
+    }
+
+    /* ============ الخطوة 2: التخصيص ============ */
+    function renderCustomize() {
+      const grid = document.getElementById("customizeGrid");
+      grid.innerHTML = REQUEST.items.map((it, i) => {
+        const p = PRODUCTS.find(x => x.id === it.productId);
+        return `
+        <div class="col-12 col-md-6">
+          <div class="tile p-3 h-100" style="background:var(--surface-2)">
+            <div class="d-flex gap-3 align-items-start mb-3">
+              <img src="${placeholder(p)}" alt="" style="width:74px;height:74px;object-fit:cover;border-radius:10px" />
+              <div>
+                <div class="fw-bold small">${p.name}</div>
+                <div class="small text-muted-2">${p.material} · ${p.category === "doors" ? "أبواب" : "مطابخ"}</div>
+              </div>
+              <button class="icon-btn ms-auto js-remove" data-i="${i}" title="إزالة"><i class="bi bi-trash3"></i></button>
+            </div>
+            <div class="row g-2">
+              <div class="col-12">
+                <label class="form-label small mb-1">التشطيب</label>
+                <select class="form-select form-select-sm js-finish" data-i="${i}">
+                  ${FINISH_SWATCHES.map(s => `<option ${s.name === it.finish ? "selected" : ""}>${s.name}</option>`).join("")}
+                </select>
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">العرض (سم)</label>
+                <input type="number" min="40" max="400" class="form-control form-control-sm js-width" data-i="${i}" value="${it.widthCm}" />
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">الارتفاع (سم)</label>
+                <input type="number" min="40" max="400" class="form-control form-control-sm js-height" data-i="${i}" value="${it.heightCm}" />
+              </div>
+              <div class="col-6">
+                <label class="form-label small mb-1">الكمية</label>
+                <input type="number" min="1" max="50" class="form-control form-control-sm js-qty" data-i="${i}" value="${it.qty}" />
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }).join("") || `<div class="col-12 text-center text-muted-2 small py-4">لم تختر أي تصميم بعد.</div>`;
+
+      grid.querySelectorAll(".js-remove").forEach(b => b.addEventListener("click", () => {
+        REQUEST.items.splice(Number(b.dataset.i), 1);
+        renderPick(); renderCustomize(); refreshSummary();
+      }));
+      grid.querySelectorAll(".js-finish").forEach(s => s.addEventListener("change", () => {
+        REQUEST.items[Number(s.dataset.i)].finish = s.value; refreshSummary();
+      }));
+      grid.querySelectorAll(".js-width").forEach(s => s.addEventListener("input", () =>
+        REQUEST.items[Number(s.dataset.i)].widthCm = s.value));
+      grid.querySelectorAll(".js-height").forEach(s => s.addEventListener("input", () =>
+        REQUEST.items[Number(s.dataset.i)].heightCm = s.value));
+      grid.querySelectorAll(".js-qty").forEach(s => s.addEventListener("input", () =>
+        REQUEST.items[Number(s.dataset.i)].qty = Math.max(1, Number(s.value) || 1)));
+    }
+
+    /* ============ الموجز الحي ============ */
+    function refreshSummary() {
+      const tile = document.getElementById("summaryTile");
+      tile.classList.toggle("d-none", REQUEST.items.length === 0);
+      if (!REQUEST.items.length) return;
+      document.getElementById("summaryBody").innerHTML = REQUEST.items
+        .map((it, i) => {
+          const p = PRODUCTS.find(x => x.id === it.productId);
+          const dims = (it.widthCm || it.heightCm) ? `${it.widthCm || "?"}×${it.heightCm || "?"} سم` : "القياس بعد المعاينة";
+          return `<div class="d-flex justify-content-between border-bottom py-1" style="border-color:var(--line)!important">
+            <span>${i + 1}. ${p.name.split("—")[0].trim()}</span>
+            <span>${it.finish} · ${dims} · عدد ${it.qty}</span></div>`;
+        }).join("");
+    }
+
+    /* ============ التنقل بين الخطوات ============ */
+    const btnPrev = document.getElementById("btnPrev");
+    const btnNext = document.getElementById("btnNext");
+
+    function goTo(n) {
+      step = n;
+      document.querySelectorAll(".wizard-pane").forEach(p =>
+        p.classList.toggle("d-none", p.dataset.pane !== String(n)));
+      document.querySelectorAll(".wizard-step").forEach(s => {
+        s.classList.toggle("active", Number(s.dataset.step) === n);
+        if (Number(s.dataset.step) < n) s.classList.add("done");
+        else s.classList.remove("done");
+        s.querySelector(".num").innerHTML = Number(s.dataset.step) < n ? `<i class="bi bi-check2"></i>` : Number(s.dataset.step);
+      });
+      btnPrev.disabled = n === 1;
+      btnNext.innerHTML = n === 3 ? "إرسال الطلب <i class='bi bi-send me-1'></i>" : "التالي <i class='bi bi-arrow-left me-1'></i>";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    btnNext.addEventListener("click", () => {
+      if (step === 1 && REQUEST.items.length === 0) {
+        alert("اختر تصميمًا واحدًا على الأقل للمتابعة.");
+        return;
+      }
+      if (step === 3) { submit(); return; }
+      goTo(step + 1);
+    });
+    btnPrev.addEventListener("click", () => { if (step > 1) goTo(step - 1); });
+
+    /* ============ الإرسال ============ */
+    function submit() {
+      const form = document.getElementById("quoteForm");
+      if (!form.checkValidity()) {
+        form.classList.add("was-validated");
+        return;
+      }
+      const fd = new FormData(form);
+      REQUEST.customer = Object.fromEntries(fd.entries());
+
+      /* ---- نقطة الربط مع ASP.NET Core 8 ----
+         استبدل المكالنة الوهمية أدناه بـ:
+         fetch("/api/quoterequests", {
+           method: "POST",
+           headers: { "Content-Type": "application/json" },
+           body: JSON.stringify(REQUEST)
+         });
+         و في الـ Backend: POST /api/quoterequests
+         => يخزّن في SQL Server (QuoteRequests + QuoteRequestItems)
+         => ويرسل بريدًا لفريق المبيعات
+      ---- */
+      console.log("QuoteRequest JSON (ترسل إلى API عند الربط):", JSON.stringify(REQUEST, null, 2));
+
+      const ref = "QR-" + new Date().getFullYear() + "-" +
+        Math.floor(1000 + Math.random() * 9000);
+      document.getElementById("refNum").textContent = ref;
+      goTo("done");
+    }
+
+    /* ============ التشغيل ============ */
+    renderPick();
+    renderCustomize();
+    refreshSummary();
+    goTo(1);
+  </script>
+</body>
+</html>
+
+
+

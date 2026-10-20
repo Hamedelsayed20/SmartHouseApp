@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>طلباتي — سمارت هوس</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/logo.jpg" alt="لوجو سمارت هوس — Smart House Solutions" class="brand-logo" />
+          <span>سمارت <span class="text-gold">هوس</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-label="القائمة"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=doors">الأبواب</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=kitchens">المطابخ</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#materials">الخامات والتشطيبات</a></li>
+            <li class="nav-item"><a class="nav-link" href="quote.html">طلب عرض سعر</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> حسابي
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" id="accountMenu">
+                <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-left me-2"></i> تسجيل الدخول</a></li>
+                <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i> إنشاء حساب</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a href="cart.html" class="cart-link" aria-label="سلة المشتريات" title="سلة المشتريات">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.2 8.3h13.6l-1.1 11.1a2.3 2.3 0 0 1-2.3 2.1H8.6a2.3 2.3 0 0 1-2.3-2.1L5.2 8.3Z"/><path d="M8.9 8.2V6.7a3.1 3.1 0 0 1 6.2 0v1.5"/><path d="M9.3 12.2v4.3M14.7 12.2v4.3" opacity=".55"/></svg>
+            <span class="cart-badge d-none" id="cartCount">0</span>
+          </a>
+          <a href="quote.html" class="btn btn-gold"><i class="bi bi-file-earmark-text me-1"></i> عرض سعر مخصص</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="py-5" style="margin-top:70px">
+    <div class="container">
+
+      <div class="row align-items-end g-3 mb-2">
+        <div class="col-md-7">
+          <span class="eyebrow">الخطوة الثالثة</span>
+          <h1 class="section-title h2 mb-1">طلباتي</h1>
+          <p class="section-sub mb-0">تتبع حالة طلباتك خطوة بخطوة — من الدفع حتى التسليم والتركيب.</p>
+        </div>
+        <div class="col-md-5 d-flex justify-content-md-end">
+          <span class="badge badge-soft rounded-pill">تجريبي — طلباتك تُخزن محليًا على هذا الجهاز</span>
+        </div>
+      </div>
+
+      <!-- رسالة نجاح إن أُنشئ طلب جديد -->
+      <div class="tile p-3 mb-4 d-none" id="newOrderAlert" style="border-color:var(--gold)">
+        <div class="d-flex gap-2 align-items-center">
+          <i class="bi bi-check-circle-fill text-gold" style="font-size:1.2rem"></i>
+          <div>
+            <div class="fw-bold">تم إنشاء طلبك بنجاح!</div>
+            <div class="small text-muted-2">سيتواصل فريق المعاينة معك لتثبيت موعد الزيارة المنزلية المجانية.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ملخص العدادات -->
+      <div class="row g-3 mb-4" id="statsRow"></div>
+
+      <!-- قائمة الطلبات -->
+      <div id="ordersList" class="d-flex flex-column gap-3"></div>
+
+      <!-- حالة فارغة -->
+      <div class="tile text-center py-5 d-none" id="ordersEmpty">
+        <i class="bi bi-box-seam text-gold" style="font-size:2.6rem"></i>
+        <h2 class="h5 fw-bold mt-3">لا توجد طلبات بعد</h2>
+        <p class="text-muted-2 mb-3">اطلب من الكتالوج أو اطلب عرض سعر مخصص لأول تجربة.</p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap">
+          <a href="catalog.html" class="btn btn-gold"><i class="bi bi-grid me-1"></i> تصفّح الكتالوج</a>
+          <a href="quote.html" class="btn btn-outline-gold"><i class="bi bi-file-earmark-text me-1"></i> طلب عرض سعر</a>
+        </div>
+      </div>
+
+      <!-- التعليق المرجعي للربط الفعلي -->
+      <div class="small text-muted-2 mt-4">
+        <!-- فعليًا: GET /api/orders/my?customerId=… مع JWT، والإلغاء عبر POST /api/orders/{id}/cancel -->
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer pt-4 mt-5">
+    <div class="container">
+      <div class="footer-bottom py-3 d-flex flex-wrap justify-content-between gap-2">
+        <span>© 2026 سمارت هوس — جميع الحقوق محفوظة</span>
+        <a href="cart.html" class="text-gold">السلة <i class="bi bi-bag"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      seedDemoOrders();
+
+      /* رسالة نجاح الطلب الجديد */
+      if (new URLSearchParams(location.search).get("new")) {
+        const al = document.getElementById("newOrderAlert");
+        al.classList.remove("d-none");
+        al.scrollIntoView({ block: "center" });
+        /* فعليًا: تعليم القراءة عبر GET /api/orders/confirm-view */
+      }
+
+      const STATUS_ICON = {
+        "بانتظار الدفع": { cls: "s-todo", ic: "bi-hourglass-split" },
+        "قيد التنفيذ":   { cls: "s-run",  ic: "bi-arrow-repeat" },
+        "تم التسليم":    { cls: "s-done", ic: "bi-check-circle-fill" }
+      };
+      const cardCls = { "بانتظار الدفع": "st-todo", "قيد التنفيذ": "st-run", "تم التسليم": "st-done" };
+      const FLOW = ["بانتظار الدفع", "قيد التنفيذ", "تم التسليم"];
+
+      const orders = getOrders();
+
+      /* عدادات سريعة */
+      const counts = {
+        "بانتظار الدفع": orders.filter(o => o.status === "بانتظار الدفع").length,
+        "قيد التنفيذ": orders.filter(o => o.status === "قيد التنفيذ").length,
+        "تم التسليم": orders.filter(o => o.status === "تم التسليم").length
+      };
+      const ICONS = { "بانتظار الدفع": "bi-hourglass-split", "قيد التنفيذ": "bi-arrow-repeat", "تم التسليم": "bi-check-circle-fill" };
+      document.getElementById("statsRow").innerHTML =
+        ["بانتظار الدفع", "قيد التنفيذ", "تم التسليم"].map(s => `
+        <div class="col-4">
+          <div class="tile p-3 text-center">
+            <i class="bi ${ICONS[s]} text-gold" style="font-size:1.4rem"></i>
+            <div class="fw-bold" style="font-size:1.3rem">${new Intl.NumberFormat("ar-EG").format(counts[s])}</div>
+            <div class="small text-muted-2">${s}</div>
+          </div>
+        </div>`).join("");
+      /* (العدّادات تُبنى من getOrders() الفعلية) */
+
+      /* بطاقات الطلبات */
+      document.getElementById("ordersList").innerHTML = orders.map(o => {
+        const items = o.items.map(i => {
+          const p = PRODUCTS.find(x => x.id === i.id);
+          return p ? `
+          <div class="d-flex align-items-center gap-2 py-2" style="border-bottom:1px solid var(--line)">
+            <img src="${placeholder(p)}" ${imgFallback(p)} alt="" style="width:56px;height:44px;border-radius:8px;object-fit:cover" />
+            <div class="flex-grow-1 small">
+              <div class="fw-bold">${p.name}</div>
+              <span class="text-muted-2">رمز: ${p.sku} · الكمية: ${i.qty}</span>
+            </div>
+            <b class="text-nowrap">${formatPrice(p.priceFrom * i.qty)} ${CURRENCY}</b>
+          </div>` : "";
+        }).join("");
+        const st = STATUS_ICON[o.status] || {};
+        const step = FLOW.indexOf(o.status);
+        return `
+        <div class="tile p-4 order-card ${cardCls[o.status] || ""}">
+          <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+            <div>
+              <span class="fw-bold" style="font-size:1.02rem"><i class="bi bi-receipt text-gold me-1"></i> ${o.id}</span>
+              <span class="small text-muted-2 ms-2">${o.date}</span>
+            </div>
+            <span class="order-status-chip ${st.cls || ""}"><i class="bi ${st.ic || "bi-question-circle"} me-1"></i>${o.status}</span>
+          </div>
+
+          <!-- مؤشر مراحل الطلب -->
+          <div class="d-flex align-items-center gap-1 mb-3">
+            ${FLOW.map((f, i) => `
+            <div class="flex-fill text-center small" style="color:${i <= step ? "var(--gold-2)" : "var(--muted)"}">
+              <div style="height:4px;border-radius:4px;background:${i <= step ? "var(--gold)" : "var(--line)"};margin-bottom:.3rem"></div>
+              ${f}
+            </div>`).join("")}
+          </div>
+
+          <div class="row g-3">
+            <div class="col-lg-7">${items}</div>
+            <div class="col-lg-5">
+              <div class="d-flex justify-content-between py-1 small">
+                <span class="text-muted-2">طريقة الدفع</span><b>${o.payment}</b>
+              </div>
+              <div class="d-flex justify-content-between py-1 small">
+                <span class="text-muted-2">المدينة</span><b>${o.city}</b>
+              </div>
+              ${o.note ? `<div class="small text-muted-2 py-1"><i class="bi bi-chat-left-dots text-gold me-1"></i>${o.note}</div>` : ""}
+              <div class="d-flex justify-content-between py-1 small">
+                <span class="text-muted-2">المعاينة المنزلية</span><b>${o.visit ? "مطلوبة" : "غير مطلوبة"}</b>
+              </div>
+              <div class="d-flex justify-content-between align-items-center py-2 mt-1" style="border-top:1px solid var(--line)">
+                <span class="fw-bold">الإجمالي التقديري</span>
+                <span class="fw-bold text-gold" style="font-size:1.15rem">${formatPrice(o.total)} ${CURRENCY}</span>
+              </div>
+              <div class="d-flex gap-2 mt-2 flex-wrap">
+                ${o.status === "بانتظار الدفع"
+                  ? `<a href="checkout.html" class="btn btn-sm btn-gold"><i class="bi bi-credit-card me-1"></i> إكمال الدفع</a>` : ""}
+                ${(o.status === "بانتظار الدفع" || o.status === "قيد التنفيذ")
+                  ? `<button class="btn btn-sm btn-outline-gold" data-cancel="${o.id}"><i class="bi bi-x-circle me-1"></i> إلغاء الطلب</button>` : ""}
+                ${o.status === "تم التسليم"
+                  ? `<button class="btn btn-sm btn-outline-gold" data-reorder="${o.id}"><i class="bi bi-arrow-repeat me-1"></i> إعادة الطلب</button>` : ""}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }).join("");
+
+      document.getElementById("ordersEmpty").classList.toggle("d-none", orders.length > 0);
+
+      /* إجراءات الطلب */
+      document.getElementById("ordersList").addEventListener("click", e => {
+        const cancel = e.target.closest("[data-cancel]");
+        const reorder = e.target.closest("[data-reorder]");
+        if (cancel) {
+          const o = getOrders().find(x => x.id === cancel.dataset.cancel);
+          if (confirm(`إلغاء الطلب ${o.id}؟`)) {
+            const list = getOrders().filter(x => x.id !== o.id);
+            saveOrders(list);
+            location.reload();
+          }
+        }
+        if (reorder) {
+          const o = getOrders().find(x => x.id === reorder.dataset.reorder);
+          o.items.forEach(i => addToCart(i.id, i.qty));
+          location.href = "cart.html";
+        }
+      });
+
+      syncCartBadge();
+      compareBarInit();
+    })();
+  </script>
+</body>
+</html>

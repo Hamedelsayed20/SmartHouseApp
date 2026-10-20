@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>غير مصرّح بالدخول — سمارت هاوس</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
+  <link href="assets/css/admin.css" rel="stylesheet" />
+</head>
+<body data-page="denied">
+  <div class="denied-wrap">
+    <div class="denied-card">
+      <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس" style="height:58px;border-radius:11px;box-shadow:var(--sh-shadow)" />
+      <div class="denied-icon mt-4"><i class="bi bi-shield-lock"></i></div>
+      <h1 class="h4 fw-bold">عذرًا، لا تملك صلاحية الوصول</h1>
+      <p class="text-secondary" style="font-size:.9rem;line-height:1.8">
+        الصفحة أو المورد الذي تحاول الوصول إليه محصور بصلاحيات محددة
+        (مثل مدير النظام أو موظف مبيعات). إذا كنت ترى أنك بحاجة لهذه الصلاحية،
+        تواصل مع مدير النظام لمنحك الدور المناسب.
+      </p>
+      <div class="small text-secondary mb-4" style="background:var(--sh-ivory);border:1px solid var(--sh-line);border-radius:10px;padding:.6rem .9rem">
+        <i class="bi bi-info-circle me-1"></i>
+        عند الربط الفعلي: هذا يطابق <code>403 Forbidden</code> وصفحة
+        <code>AccessDenied</code> في ASP.NET Core Identity.
+      </div>
+      <div class="d-flex gap-2 justify-content-center flex-wrap">
+        <a href="#" class="btn-sh-gold" id="btnDeniedBack"></a>
+        <a href="login.html" class="btn-sh-ghost">تسجيل الدخول بحساب آخر</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

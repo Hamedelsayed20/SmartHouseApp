@@ -1,0 +1,421 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <title>سمارت هوس — كتالوج الأبواب والمطابخ الفاخرة</title>
+  <meta name="description" content="كتالوج فاخر للأبواب والمطابخ: قارن التصاميم والخامات والتشطيبات، واطلب عرض سعر مخصص خلال دقائق." />
+
+  <!-- Bootstrap 5 RTL -->
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/vendor/fonts/cairo.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- ================= الترويسة ================= -->
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="brand-logo" />
+          <span class="text-white">سمارت <span class="text-gold">هوس</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-label="القائمة"><span class="navbar-toggler-icon"></span></button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">الرئيسية</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=doors">الأبواب</a></li>
+            <li class="nav-item"><a class="nav-link" href="catalog.html?cat=kitchens">المطابخ</a></li>
+            <li class="nav-item"><a class="nav-link" href="#materials">الخامات والتشطيبات</a></li>
+            <li class="nav-item"><a class="nav-link" href="quote.html">طلب عرض سعر</a></li>
+                      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> حسابي
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" id="accountMenu">
+                <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-left me-2"></i> تسجيل الدخول</a></li>
+                <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i> إنشاء حساب</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a href="cart.html" class="cart-link" aria-label="سلة المشتريات" title="سلة المشتريات">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.2 8.3h13.6l-1.1 11.1a2.3 2.3 0 0 1-2.3 2.1H8.6a2.3 2.3 0 0 1-2.3-2.1L5.2 8.3Z"/><path d="M8.9 8.2V6.7a3.1 3.1 0 0 1 6.2 0v1.5"/><path d="M9.3 12.2v4.3M14.7 12.2v4.3" opacity=".55"/></svg>
+            <span class="cart-badge d-none" id="cartCount">0</span>
+          </a>
+                    <a href="quote.html" class="btn btn-gold"><i class="bi bi-file-earmark-text me-1"></i> عرض سعر مخصص</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ================= السلايدر الرئيسي ================= -->
+  <section class="hero-slider" aria-label="مقدمة الكتالوج">
+    <div id="mainSlider" class="carousel slide carousel-fade" data-bs-ride="carousel"
+      data-bs-interval="6500" data-bs-pause="hover">
+
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="الشريحة 1"></button>
+        <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="1" aria-label="الشريحة 2"></button>
+        <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="2" aria-label="الشريحة 3"></button>
+      </div>
+
+      <div class="carousel-inner">
+
+        <!-- الشريحة 1: الأبواب -->
+        <div class="carousel-item active">
+          <img class="slide-img" src="assets/img/smartHouselogo1.jpeg" alt="باب كلاسيكي فاخر منقوش يدويًا" />
+          <div class="slide-scrim"></div>
+          <div class="container slide-caption">
+            <div>
+              <span class="eyebrow">كتالوج تصاميم فاخر · أبواب ومطابخ</span>
+              <h1 class="display-6 mb-3">
+                أبواب تصنع <span class="gold-underline">الانطباع الأول</span>… وتدوم عقودًا
+              </h1>
+              <p class="lead text-muted-2 mb-4">
+                نقش محفور، خشب طبيعي منقول بالقياس، وأقفال ذكية — اختر النمط
+                والون دون تنقل بين المعارض.
+              </p>
+              <div class="d-flex gap-2 flex-wrap">
+                <a href="catalog.html?cat=doors" class="btn btn-gold btn-lg px-4">
+                  <i class="bi bi-door-open me-1"></i> تصفّح الأبواب
+                </a>
+                <a href="quote.html" class="btn btn-outline-gold btn-lg px-4">طلب عرض سعر</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- الشريحة 2: المطابخ -->
+        <div class="carousel-item">
+          <img class="slide-img" src="assets/img/kt-2002.jpg" alt="مطبخ كلاسيكي خشب بلوط مع رخام" />
+          <div class="slide-scrim"></div>
+          <div class="container slide-caption">
+            <div>
+              <span class="eyebrow">مطابخ مصنوعة بالقياس</span>
+              <h1 class="display-6 mb-3">
+                مطبخك يبدأ من <span class="gold-underline">التصميم الصحيح</span>
+              </h1>
+              <p class="lead text-muted-2 mb-4">
+                جزيرة رخامية وواجهات خشب حقيقي، مع تصميم ثلاثي الأبعاد
+                قبل التنفيذ لضبط كل تفصيلة — من المقابض إلى الإضاءة.
+              </p>
+              <div class="d-flex gap-2 flex-wrap">
+                <a href="catalog.html?cat=kitchens" class="btn btn-gold btn-lg px-4">
+                  <i class="bi bi-house-gear me-1"></i> تصفّح المطابخ
+                </a>
+                <a href="product.html?id=8" class="btn btn-outline-gold btn-lg px-4">
+                  الشريحة التالية <i class="bi bi-arrow-left"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- الشريحة 3: قارن ثم اطلب -->
+        <div class="carousel-item">
+          <img class="slide-img" src="assets/img/kt-2004.jpg" alt="مطبخ ذو جزيرة وسطية كوارتز" />
+          <div class="slide-scrim"></div>
+          <div class="container slide-caption">
+            <div>
+              <span class="eyebrow">طريقة عملنا</span>
+              <h1 class="display-6 mb-3">
+                قارن <span class="gold-underline">3 تصاميم</span> جنبًا إلى جنب،
+                ثم اطلب عرض سعر واحد
+              </h1>
+              <p class="lead text-muted-2 mb-4">
+                جدول مقارنة يوضح الخامة والتشطيب والقياسات، وعيّنات ألوان
+                فورية، وطلب غير ملزم يرد عليه فريق المبيعات خلال 48 ساعة.
+              </p>
+              <div class="d-flex gap-2 flex-wrap">
+                <a href="catalog.html" class="btn btn-gold btn-lg px-4">
+                  <i class="bi bi-layers me-1"></i> ابدأ المقارنة
+                </a>
+                <a href="quote.html" class="btn btn-outline-gold btn-lg px-4">
+                  <i class="bi bi-file-earmark-text me-1"></i> أرسل الطلب
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">السابق</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">التالي</span>
+      </button>
+    </div>
+
+    <!-- شريط الأرقام أسفل السلايدر -->
+    <div class="stats-strip">
+      <div class="container">
+        <div class="row text-center text-md-start g-3 py-4">
+          <div class="col-6 col-md-3">
+            <strong>24+</strong>
+            <div class="small">تصميمًا متاحًا للقياس المخصص</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <strong>9</strong>
+            <div class="small">تشطيبات قابلة للمعاينة والألوان</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <strong>48س</strong>
+            <div class="small">متوسط زمن وصول عرض السعر</div>
+          </div>
+          <div class="col-6 col-md-3">
+            <strong>3D</strong>
+            <div class="small">تصميم ثلاثي الأبعاد قبل التنفيذ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= الفئتان ================= -->
+  <section class="py-5" id="categories">
+    <div class="container">
+      <div class="row g-4 reveal">
+        <div class="col-md-6">
+          <div class="tile d-flex flex-column align-items-start">
+            <span class="tile-icon"><i class="bi bi-door-open"></i></span>
+            <h3 class="h5 fw-bold mb-2">الأبواب</h3>
+            <p class="text-muted-2 mb-3">
+              أبواب داخلية للغرف، أبواب مدخل عالية الأمان، أبواب منزلق زجاجية، وحلول للحمامات والمساحات الصغيرة —
+              كلُّها قابلة للتخصيص بالعرض والارتفاع.
+            </p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="chip"><i class="bi bi-check2"></i> عازلة للصوت</span>
+              <span class="chip"><i class="bi bi-check2"></i> مقاومة للحريق</span>
+              <span class="chip"><i class="bi bi-check2"></i> قفل ذكي</span>
+            </div>
+            <a href="catalog.html?cat=doors" class="btn btn-outline-gold mt-auto">تصفّح قسم الأبواب <i class="bi bi-arrow-left me-1"></i></a>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="tile d-flex flex-column align-items-start">
+            <span class="tile-icon"><i class="bi bi-house-gear"></i></span>
+            <h3 class="h5 fw-bold mb-2">المطابخ</h3>
+            <p class="text-muted-2 mb-3">
+              مطابخ عصرية بدون مقابض، مطابخ كلاسيكية بجزيرة رخامية، ومطابخ للمساحات الصغيرة — مصممة ثلاثي الأبعاد
+              قبل التنفيذ لضبط كل التفاصيل.
+            </p>
+            <div class="d-flex gap-2 flex-wrap mb-3">
+              <span class="chip"><i class="bi bi-check2"></i> تصميم 3D مجاني</span>
+              <span class="chip"><i class="bi bi-check2"></i> أدراج تحمل 40كجم</span>
+              <span class="chip"><i class="bi bi-check2"></i> إضاءة مدمجة</span>
+            </div>
+            <a href="catalog.html?cat=kitchens" class="btn btn-outline-gold mt-auto">تصفّح قسم المطابخ <i class="bi bi-arrow-left me-1"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= منتجات مختارة ================= -->
+  <section class="py-5" id="featured">
+    <div class="container">
+      <div class="row align-items-end mb-4 reveal">
+        <div class="col-md-8">
+          <span class="eyebrow">الأكثر مشاهدة هذا الأسبوع</span>
+          <h2 class="section-title h3 mb-1">تصاميم مختارة بعناية</h2>
+          <p class="section-sub mb-0">اثنان من الأبواب واثنان من المطابخ — كل نمط قابل للطلب بقياس ولون مخصصين.</p>
+        </div>
+        <div class="col-md-4 text-md-start mt-3 mt-md-0">
+          <a href="catalog.html" class="btn btn-outline-gold">كل المنتجات <i class="bi bi-arrow-left me-1"></i></a>
+        </div>
+      </div>
+      <div class="row g-4" id="featuredGrid"><!-- تُحقن البطاقات بـ JS --></div>
+    </div>
+  </section>
+
+  <!-- ================= الخامات والتشطيبات ================= -->
+  <section class="py-5" id="materials" style="background:var(--surface);border-block:1px solid var(--line)">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5 reveal">
+          <span class="eyebrow">قسم المعاينة</span>
+          <h2 class="section-title h3 mb-3">الخامات والتشطيبات — اختر قبل أن تطلب</h2>
+          <p class="text-muted-2">
+            كل منتج في الكتالوج يعرض الخامة والألوان المتاحة. جرّب عيّنات الألوان أدناه لترى
+            نتيجة كل اختيار فورًا، ثم اطلب عيّنة فعلية قبل تثبيت عرض السعر.
+          </p>
+          <ul class="feature-list list-unstyled mt-3" id="materialList">
+            <li><i class="bi bi-check-circle-fill"></i><span><strong>خشب طبيعي:</strong> بلوط وجو وكرمي — عزل جيد وصوت أقل، للداخل والخارج.</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span><strong>فولاذ:</strong> للأبواب الرئيسية والأمان — مكسو بخشب لظهور فاخر.</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span><strong>MDF/أكريليك:</strong> للواجهات الحديثة — ألوان كاملة وتشطيب لامع أو مطفي.</span></li>
+            <li><i class="bi bi-check-circle-fill"></i><span><strong>رخر/كوارتز:</strong> لأسطح المطابخ — مقاوم للخدش والحرارة واللون.</span></li>
+          </ul>
+        </div>
+        <div class="col-lg-7 reveal">
+          <div class="tile">
+            <h3 class="h6 fw-bold mb-3"><i class="bi bi-droplet-half text-gold me-1"></i> معاينة الألوان (فورية)</h3>
+            <div class="d-flex flex-wrap gap-2 mb-3" id="swatchRow"><!-- تُحقن عيّنات الألوان بـ JS --></div>
+            <div class="rounded-3 p-3 d-flex align-items-center gap-3"
+              id="swatchPreview" style="background:var(--surface-2);border:1px solid var(--line)">
+              <div id="swatchBox" style="width:120px;height:90px;border-radius:10px;background:#9a6b33;flex-shrink:0"></div>
+              <div>
+                <div class="fw-bold" id="swatchName">عسلي</div>
+                <div class="small text-muted-2" id="swatchDesc">جميل للأبواب الداخلية والمطابخ الكلاسيكية.</div>
+              </div>
+            </div>
+            <p class="small text-muted-2 mt-3 mb-0">
+              <i class="bi bi-info-circle text-gold"></i>
+              هذه معاينة تقريبية للون. نوفر عيّنات فعلية قبل تثبيت عرض السعر.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= كيف تعمل ================= -->
+  <section class="py-5" id="how">
+    <div class="container">
+      <div class="text-center mb-5 reveal">
+        <span class="eyebrow">الخطوات الأربع</span>
+        <h2 class="section-title h3 mb-2">من المقارنة إلى عرض السعر</h2>
+        <p class="section-sub mx-auto mb-0">عملية واضحة وبدون انتظار — 4 خطوات فقط.</p>
+      </div>
+      <div class="row g-4">
+        <div class="col-md-3 reveal">
+          <div class="tile h-100">
+            <div class="step-num mb-3">1</div>
+            <h3 class="h6 fw-bold">تصفّح وقارن</h3>
+            <p class="small text-muted-2 mb-0">حدد حتى 3 تصاميم وقارن الخامات والتشطيبات والقياسات في جدول واحد.</p>
+          </div>
+        </div>
+        <div class="col-md-3 reveal">
+          <div class="tile h-100">
+            <div class="step-num mb-3">2</div>
+            <h3 class="h6 fw-bold">جهّز التفاصيل</h3>
+            <p class="small text-muted-2 mb-0">اختر الون والخامة والقياسات المطلوبة لكل تصميم في صفحة المنتج.</p>
+          </div>
+        </div>
+        <div class="col-md-3 reveal">
+          <div class="tile h-100">
+            <div class="step-num mb-3">3</div>
+            <h3 class="h6 fw-bold">أرسل الطلب</h3>
+            <p class="small text-muted-2 mb-0">املأ نموذجًا واحدًا يضم كل المنتجات والتفاصيل — مع عنوانك ومعلومات التواصل.</p>
+          </div>
+        </div>
+        <div class="col-md-3 reveal">
+          <div class="tile h-100">
+            <div class="step-num mb-3">4</div>
+            <h3 class="h6 fw-bold">استلم العرض</h3>
+            <p class="small text-muted-2 mb-0">يرد فريق المبيعات بعرض سعر مكتوب خلال 48 ساعة عمل غالبًا.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= دعوة أخيرة ================= -->
+  <section class="py-5">
+    <div class="container">
+      <div class="tile reveal text-center py-5"
+        style="background:linear-gradient(135deg, rgba(201,162,39,.14), transparent 45%), var(--surface); border-color:rgba(201,162,39,.4)">
+        <h2 class="section-title h3 mb-2">جاهز لتصميمك التالي؟</h2>
+        <p class="section-sub mx-auto mb-4">اختر الأنماط من الكتالوج، ثم أرسل طلب عرض السعر — بدون التزام أو رسوم مسبقة.</p>
+        <div class="d-flex gap-2 justify-content-center flex-wrap">
+          <a href="catalog.html" class="btn btn-outline-gold btn-lg px-4">تصفّح الآن</a>
+          <a href="quote.html" class="btn btn-gold btn-lg px-4"><i class="bi bi-file-earmark-text me-1"></i> طلب عرض سعر</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= الفوتر ================= -->
+  <footer class="site-footer pt-5">
+    <div class="container">
+      <div class="row g-4 pb-4">
+        <div class="col-lg-4">
+          <a class="navbar-brand mb-3" href="index.html">
+            <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="brand-logo" />
+            <span>سمارت <span class="text-gold">هوس</span></span>
+          </a>
+          <p class="text-muted-2 small">
+            كتالوج فاخر للأبواب والمطابخ في جدة — نهتم بالخامات الحقيقية والمقاسات الدقيقة
+            وعروض أسعار واضحة مكتوبة.
+          </p>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>الكتالوج</h6>
+          <div class="footer-links">
+            <a href="catalog.html?cat=doors">الأبواب</a>
+            <a href="catalog.html?cat=kitchens">المطابخ</a>
+            <a href="#materials">الخامات</a>
+            <a href="catalog.html?sort=new">أحدث الإضافات</a>
+          </div>
+        </div>
+        <div class="col-6 col-lg-2">
+          <h6>روابط سريعة</h6>
+          <div class="footer-links">
+            <a href="quote.html">طلب عرض سعر</a>
+            <a href="#how">كيف نعمل</a>
+            <a href="#">الضمان والصيانة</a>
+            <a href="#">سياسة الإرجاع</a>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <h6>تواصل معنا</h6>
+          <ul class="list-unstyled small text-muted-2">
+            <li class="mb-2"><i class="bi bi-geo-alt text-gold me-2"></i> جدة — طريق الملك، معرض سمارت هوس</li>
+            <li class="mb-2"><i class="bi bi-telephone text-gold me-2"></i> <span dir="ltr">+966 55 123 4567</span></li>
+            <li class="mb-2"><i class="bi bi-envelope text-gold me-2"></i> sales@timberline.sa</li>
+            <li><i class="bi bi-clock text-gold me-2"></i> السبت–الخميس: 9ص – 10م</li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom py-3 d-flex flex-wrap justify-content-between gap-2">
+        <span>© 2026 سمارت هوس — جميع الحقوق محفوظة</span>
+        <span>قالب كتالوج · HTML5 + Bootstrap 5 RTL · جاهز للربط مع ASP.NET Core 8</span>
+        <a href="login.html" class="text-gold" style="font-size:.8rem"><i class="bi bi-shield-lock"></i> دخول الإدارة</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============== الروائح JS ============== -->
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    /* البطاقات المختارة */
+    /* صفان: الصف الأول الأكثر مشاهدة (متنوع) + الصف الثاني 4 أبواب
+       (يقابلها في SQL: SELECT TOP 4 ... ORDER BY Views DESC / WHERE Category='doors') */
+    const featuredIds = [1, 2, 7, 10, 3, 4, 5, 6];
+    document.getElementById("featuredGrid").innerHTML =
+      featuredIds.map(id => renderProductCard(PRODUCTS.find(p => p.id === id))).join("");
+
+    /* مشغّل المعاينة الحية للأطواق */
+    const swRow = document.getElementById("swatchRow");
+    swRow.innerHTML = FINISH_SWATCHES.map((s, i) =>
+      `<div class="finish-swatch ${i === 0 ? "selected" : ""}" style="background:${s.css}" role="button"
+        data-name="${s.name}" data-css="${s.css}" tabindex="0" aria-label="الون ${s.name}"></div>`).join("");
+
+    function setSwatch(el) {
+      swRow.querySelectorAll(".finish-swatch").forEach(x => x.classList.remove("selected"));
+      el.classList.add("selected");
+      document.getElementById("swatchBox").style.background = el.dataset.css;
+      document.getElementById("swatchName").textContent = el.dataset.name;
+    }
+    swRow.addEventListener("click", e => { const t = e.target.closest(".finish-swatch"); if (t) setSwatch(t); });
+    swRow.addEventListener("keydown", e => { if (e.key === "Enter") setSwatch(e.target); });
+
+    /* لوحة المقارنة */
+    compareBarInit();
+  </script>
+</body>
+</html>
+
+
+

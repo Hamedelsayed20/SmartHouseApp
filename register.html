@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>إنشاء حساب — سمارت هاوس</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
+  <link href="assets/css/admin.css" rel="stylesheet" />
+</head>
+<body class="sh-auth" data-page="register">
+  <div class="auth-split">
+
+    <aside class="auth-brand brand-kitchen">
+      <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="logo-lg" />
+      <div>
+        <h2>انضم إلى عملاء سمارت هاوس</h2>
+        <p class="lead">سجّل لتتابع استفساراتك وعروض الأسعار الخاصة بك، وتطلب عروضًا لأبواب المصفحة والمطابخ الحديثة.</p>
+        <div class="auth-points mt-3">
+          <div class="pt"><i class="bi bi-bell"></i> إشعار فوري عند رد الفريق على استفسارك</div>
+          <div class="pt"><i class="bi bi-file-earmark-text"></i> عروض أسعار موثقة بصيغة PDF</div>
+          <div class="pt"><i class="bi bi-shield-lock"></i> بياناتك محمية ولا تُشارك مع أي طرف</div>
+        </div>
+      </div>
+      <div><span class="tagline"><i class="bi bi-star-fill"></i> الجودة والأمان يبدأان من هنا</span></div>
+    </aside>
+
+    <main class="auth-main">
+      <div class="auth-box">
+        <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس" class="logo-sm" />
+        <h1>إنشاء حساب جديد</h1>
+        <p class="sub">حساب عميل لتصفح المنتجات وطلب عروض الأسعار</p>
+
+        <div class="auth-alert" style="background:rgba(196,154,69,.1);border-color:rgba(196,154,69,.4);color:#9A742B">
+          <i class="bi bi-shield-lock mt-1"></i>
+          <span>هذا النموذج مخصص لعملاء المعرض فقط. حسابات الموظفين والمديرين تُنشأ حصريًا من لوحة الإدارة عبر مسار داخلي مقيّد.</span>
+        </div>
+
+        <form id="regForm" novalidate>
+          <div class="auth-field">
+            <label for="name">الاسم الكامل</label>
+            <input type="text" id="name" name="name" class="form-control" placeholder="مثال: عبدالله الشمري" required />
+            <div class="field-error">الاسم مطلوب</div>
+          </div>
+
+          <div class="auth-field">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" class="form-control" dir="ltr" placeholder="you@example.com" required />
+            <div class="field-error">أدخل بريدًا إلكترونيًا صحيحًا</div>
+          </div>
+
+          <div class="auth-field">
+            <label for="phone">رقم الجوال</label>
+            <input type="tel" id="phone" name="phone" class="form-control" dir="ltr" placeholder="05XXXXXXXX" required />
+            <div class="field-error">الجوال مطلوب</div>
+          </div>
+
+          <div class="auth-field">
+            <label for="pw">كلمة المرور</label>
+            <div class="input-group">
+              <input type="password" id="pw" class="form-control" placeholder="••••••••" required />
+              <button type="button" class="input-group-text pw-toggle" id="pwToggle" aria-label="إظهار/إخفاء">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="pw-meter" id="pwMeter"><span></span><span></span><span></span><span></span></div>
+            <div class="pw-text" id="pwTxt">أدخل كلمة المرور</div>
+            <div class="field-error">6 أحرف على الأقل</div>
+          </div>
+
+          <div class="auth-field">
+            <label for="pw2">تأكيد كلمة المرور</label>
+            <input type="password" id="pw2" class="form-control" placeholder="••••••••" required />
+            <div class="field-error">كلمتا المرور غير متطابقتين</div>
+          </div>
+
+          <div class="form-check form-check-gold mt-3">
+            <input class="form-check-input" type="checkbox" id="terms" required />
+            <label class="form-check-label small" for="terms">
+              أوافق على <a href="#" style="color:var(--sh-gold);font-weight:700">الشروط والأحكام</a> وسياسة الخصوصية
+            </label>
+          </div>
+
+          <div class="auth-alert" id="authErr" role="alert">
+            <i class="bi bi-exclamation-triangle mt-1"></i> <span id="authErrTxt"></span>
+          </div>
+
+          <button type="submit" class="btn-auth mt-4" id="btnReg">
+            <i class="bi bi-person-plus me-1"></i> إنشاء الحساب
+          </button>
+        </form>
+
+        <p class="auth-alt">
+          لديك حساب بالفعل؟ <a href="login.html">تسجيل الدخول</a>
+        </p>
+      </div>
+      <div class="auth-foot">© 2026 سمارت هاوس — SMART HOUSE Solutions</div>
+    </main>
+  </div>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

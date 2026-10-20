@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>تسجيل الدخول — سمارت هاوس</title>
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
+  <link href="assets/css/admin.css" rel="stylesheet" />
+</head>
+<body class="sh-auth" data-page="login">
+  <div class="auth-split">
+
+    <!-- اللوحة التعريفية: صورة باب مصفح فاخر -->
+    <aside class="auth-brand brand-door">
+      <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="logo-lg" />
+      <div>
+        <h2>أهلًا بك في سمارت هاوس</h2>
+        <p class="lead">معرض الأبواب المصفحة التركية وأبواب PVC والمطابخ الحديثة — إدارة كاملة لمنتجاتك وعملائك وعروض أسعارك من مكان واحد.</p>
+        <div class="auth-points mt-3">
+          <div class="pt"><i class="bi bi-shield-check"></i> أبواب مصفحة بمعايير تركية معتمدة</div>
+          <div class="pt"><i class="bi bi-house-gear"></i> مطابخ MDF بضمان عشر سنوات</div>
+          <div class="pt"><i class="bi bi-file-earmark-text"></i> عروض أسعار واضحة خلال 48 ساعة</div>
+        </div>
+      </div>
+      <div><span class="tagline"><i class="bi bi-star-fill"></i> الجودة والأمان يبدأان من هنا</span></div>
+    </aside>
+
+    <!-- نموذج الدخول -->
+    <main class="auth-main">
+      <div class="auth-box">
+        <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس" class="logo-sm" />
+        <h1>تسجيل الدخول</h1>
+        <p class="sub">مرحبًا بك في لوحة إدارة سمارت هاوس</p>
+
+        <form id="loginForm" novalidate>
+          <div class="auth-field">
+            <label for="email">البريد الإلكتروني أو اسم المستخدم</label>
+            <input type="email" id="email" class="form-control" placeholder="admin@smarthouse.sa" autocomplete="username" required />
+            <div class="field-error">أدخل بريدًا إلكترونيًا صحيحًا</div>
+          </div>
+
+          <div class="auth-field">
+            <label for="pw">كلمة المرور</label>
+            <div class="input-group">
+              <input type="password" id="pw" class="form-control" placeholder="••••••••" autocomplete="current-password" required />
+              <button type="button" class="input-group-text pw-toggle" id="pwToggle" aria-label="إظهار/إخفاء كلمة المرور">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="field-error">كلمة المرور 6 أحرف على الأقل</div>
+          </div>
+
+          <div class="d-flex justify-content-between align-items-center mt-3">
+            <div class="form-check form-check-gold mb-0">
+              <input class="form-check-input" type="checkbox" id="remember" />
+              <label class="form-check-label small fw-bold" for="remember">تذكرني</label>
+            </div>
+            <a href="forgot-password.html" class="small fw-bold" style="color:var(--sh-gold)">نسيت كلمة المرور؟</a>
+          </div>
+
+          <div class="auth-alert" id="authErr" role="alert">
+            <i class="bi bi-exclamation-triangle mt-1"></i> <span id="authErrTxt"></span>
+          </div>
+
+          <button type="submit" class="btn-auth mt-4" id="btnLogin">
+            <i class="bi bi-box-arrow-in-left me-1"></i> دخول
+          </button>
+        </form>
+
+        <p class="auth-alt">
+          لا تملك حسابًا؟ <a href="register.html">إنشاء حساب عميل جديد</a>
+        </p>
+        <p class="auth-alt" style="margin-top:.4rem">
+          <a href="index.html" style="color:var(--sh-gray)"><i class="bi bi-arrow-right"></i> العودة إلى موقع المعرض</a>
+        </p>
+      </div>
+
+      <div class="auth-foot">© 2026 سمارت هاوس — SMART HOUSE Solutions · تسجيل دخول الموظفين عبر مسار داخلي مقيّد</div>
+    </main>
+  </div>
+
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/admin-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>

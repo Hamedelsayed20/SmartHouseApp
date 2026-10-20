@@ -1,0 +1,312 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/jpeg" href="assets/img/logo.jpg" />
+  <title>كتالوج التصاميم — سمارت هوس</title>
+  <meta name="description" content="تصفّح كتالوج الأبواب والمطابخ: فلترة حسب الفئة والخامة والسعر والطراز، وقارن حتى 3 تصاميم، واطلب عرض سعر." />
+
+  <!-- كل المكتبات محلية — يعمل القالب بلا إنترنت -->
+  <link href="assets/vendor/bootstrap/bootstrap.rtl.min.css" rel="stylesheet" />
+  <link href="assets/vendor/icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/fonts/cairo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <!-- الترويسة -->
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg py-3">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="assets/img/logo.jpg" alt="لوجو سمارت هاوس — Smart House Solutions" class="brand-logo" />
+          <span>سمارت <span class="text-gold">هوس</span></span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+          aria-label="القائمة"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="mainNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+            <li class="nav-item"><a class="nav-link js-nav-doors" href="catalog.html?cat=doors">الأبواب</a></li>
+            <li class="nav-item"><a class="nav-link js-nav-kitchens" href="catalog.html?cat=kitchens">المطابخ</a></li>
+            <li class="nav-item"><a class="nav-link" href="index.html#materials">الخامات والتشطيبات</a></li>
+            <li class="nav-item"><a class="nav-link" href="quote.html">طلب عرض سعر</a></li>
+                      <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-person-circle"></i> حسابي
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" id="accountMenu">
+                <li><a class="dropdown-item" href="login.html"><i class="bi bi-box-arrow-in-left me-2"></i> تسجيل الدخول</a></li>
+                <li><a class="dropdown-item" href="register.html"><i class="bi bi-person-plus me-2"></i> إنشاء حساب</a></li>
+              </ul>
+            </li>
+          </ul>
+          <a href="cart.html" class="cart-link" aria-label="سلة المشتريات" title="سلة المشتريات">
+            <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.2 8.3h13.6l-1.1 11.1a2.3 2.3 0 0 1-2.3 2.1H8.6a2.3 2.3 0 0 1-2.3-2.1L5.2 8.3Z"/><path d="M8.9 8.2V6.7a3.1 3.1 0 0 1 6.2 0v1.5"/><path d="M9.3 12.2v4.3M14.7 12.2v4.3" opacity=".55"/></svg>
+            <span class="cart-badge d-none" id="cartCount">0</span>
+          </a>
+                    <a href="quote.html" class="btn btn-gold"><i class="bi bi-file-earmark-text me-1"></i> عرض سعر مخصص</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="py-4">
+    <div class="container">
+
+      <!-- رأس الصفحة -->
+      <div class="row align-items-end g-3 mb-4">
+        <div class="col-md-7">
+          <span class="eyebrow">الكتالوج الكامل</span>
+          <h1 class="section-title h2 mb-1">تصفّح وقارن قبل أن تطلب</h1>
+          <p class="section-sub mb-0">
+            استخدم الفلاتر لتضييق الخيارات حسب الفئة والخامة والسعر، ثم أضِف حتى 3 تصاميم
+            للمقارنة جنبًا إلى جنب.
+          </p>
+        </div>
+        <div class="col-md-5">
+          <div class="search-input-wrap">
+            <i class="bi bi-search"></i>
+            <input type="search" id="searchBox" class="form-control"
+              placeholder="ابحث باسم التصميم أو الخامة…" aria-label="بحث في الكتالوج" />
+          </div>
+        </div>
+      </div>
+
+      <!-- لوحة الفلاتر -->
+      <div class="tile mb-4">
+        <div class="row g-3">
+
+          <!-- الفئة -->
+          <div class="col-lg-7">
+            <div class="mb-2 small text-muted-2">الفئة</div>
+            <div class="d-flex flex-wrap gap-2" id="catChips">
+              <button type="button" class="chip active" data-cat="all"><i class="bi bi-grid"></i> الكل</button>
+              <button type="button" class="chip" data-cat="doors"><i class="bi bi-door-open"></i> أبواب</button>
+              <button type="button" class="chip" data-cat="kitchens"><i class="bi bi-house-gear"></i> مطابخ</button>
+            </div>
+          </div>
+
+          <!-- الخامة -->
+          <div class="col-md-4 col-lg-3">
+            <div class="mb-2 small text-muted-2">الخامة</div>
+            <select id="materialFilter" class="form-select" aria-label="فلتر الخامة">
+              <option value="all">كل الخامات</option>
+            </select>
+          </div>
+
+          <!-- الترتيب -->
+          <div class="col-md-4 col-lg-2">
+            <div class="mb-2 small text-muted-2">الترتيب</div>
+            <select id="sortFilter" class="form-select" aria-label="ترتيب النتائج">
+              <option value="relevance">الأكثر ملاءمة</option>
+              <option value="priceAsc">السعر: من الأقل</option>
+              <option value="priceDesc">السعر: من الأعلى</option>
+              <option value="rating">الأعلى تقييمًا</option>
+            </select>
+          </div>
+
+          <!-- نطاق السعر -->
+          <div class="col-md-4 col-lg-4">
+            <div class="mb-2 small text-muted-2">نطاق السعر (<span class="text-gold">ر.س</span>)</div>
+            <div class="d-flex gap-2 align-items-center">
+              <input id="priceMin" type="number" min="0" step="100" class="form-control" placeholder="من" aria-label="أقل سعر" />
+              <span class="text-muted-2">—</span>
+              <input id="priceMax" type="number" min="0" step="100" class="form-control" placeholder="إلى" aria-label="أعلى سعر" />
+            </div>
+          </div>
+
+          <!-- أزرار سريعة لسعر -->
+          <div class="col-md-8 col-lg-4 d-flex align-items-end flex-wrap gap-2">
+            <button type="button" class="chip" data-min="" data-max="10000"><i class="bi bi-cash-coin"></i> حتى 10 آلاف</button>
+            <button type="button" class="chip" data-min="10000" data-max="30000"><i class="bi bi-cash-stack"></i> 10–30 ألف</button>
+            <button type="button" class="chip" data-min="30000" data-max=""><i class="bi bi-gem"></i> فاخر 30+</button>
+            <button type="button" class="chip" id="btnClearPrice"><i class="bi bi-eraser"></i> إزالة السعر</button>
+          </div>
+
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" class="btn btn-sm btn-outline-gold" id="btnReset">
+              <i class="bi bi-arrow-counterclockwise me-1"></i> إعادة ضبط كل الفلاتر
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- النتائج -->
+      <div class="d-flex justify-content-between align-items-center mb-3">
+        <div id="resultCount" class="small text-muted-2"></div>
+        <button type="button" class="btn btn-sm btn-outline-gold" id="btnCompareOpen2" disabled>
+          <i class="bi bi-layers me-1"></i> فتح المقارنة
+        </button>
+      </div>
+
+      <div class="row g-4" id="grid"><!-- تُحقن البطاقات بـ JS --></div>
+
+      <div id="emptyState" class="text-center py-5 d-none">
+        <div class="tile py-5">
+          <i class="bi bi-funnel text-gold" style="font-size:2.4rem"></i>
+          <h2 class="h5 fw-bold mt-3">لا توجد نتائج مطابقة</h2>
+          <p class="text-muted-2 mb-3">جرّب توسيع الفلاتر أو إزالة بعض الشروط.</p>
+          <button type="button" class="btn btn-outline-gold" id="btnResetEmpty">إعادة ضبط الفلاتر</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="site-footer pt-4">
+    <div class="container">
+      <div class="footer-bottom py-3 d-flex flex-wrap justify-content-between gap-2">
+        <span>© 2026 سمارت هوس — جميع الحقوق محفوظة</span>
+        <a href="quote.html" class="text-gold">لم تجد ما تبحث عنه؟ اطلب تصميمًا مخصصًا <i class="bi bi-arrow-left"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- المكتبات والبيانات — كلها محلية -->
+  <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/products.js"></script>
+  <script src="assets/js/app.js"></script>
+  <script>
+    (function () {
+      "use strict";
+
+      /* ============================================================
+         حالة الفلترة — يقابلها في ASP.NET Core:
+         GET /api/products?category=&material=&minPrice=&maxPrice=&sort=&q=
+         ============================================================ */
+      const state = { cat: "all", material: "all", sort: "relevance", q: "", minPrice: null, maxPrice: null };
+
+      /* تعبئة فلتر الخامات ديناميكيًا (يقابل SELECT DISTINCT Material) */
+      const materialSelect = document.getElementById("materialFilter");
+      [...new Set(PRODUCTS.map(p => p.material))].forEach(m => {
+        const o = document.createElement("option");
+        o.value = m; o.textContent = m;
+        materialSelect.appendChild(o);
+      });
+
+      /* قراءة ?cat= من الرابط (يقابلها في Angular: ActivatedRoute.queryParams) */
+      const urlCat = new URLSearchParams(location.search).get("cat");
+      if (urlCat === "doors" || urlCat === "kitchens") {
+        state.cat = urlCat;
+        const navLink = document.querySelector(
+          urlCat === "doors" ? ".js-nav-doors" : ".js-nav-kitchens");
+        if (navLink) navLink.classList.add("active");
+      }
+      document.querySelectorAll("#catChips .chip").forEach(c =>
+        c.classList.toggle("active", c.dataset.cat === state.cat));
+
+      /* ============================ ربط الفلاتر ============================ */
+
+      document.getElementById("catChips").addEventListener("click", e => {
+        const chip = e.target.closest(".chip");
+        if (!chip) return;
+        document.querySelectorAll("#catChips .chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        state.cat = chip.dataset.cat;
+        apply();
+      });
+
+      materialSelect.addEventListener("change", e => { state.material = e.target.value; apply(); });
+      document.getElementById("sortFilter").addEventListener("change", e => { state.sort = e.target.value; apply(); });
+      document.getElementById("searchBox").addEventListener("input", e => { state.q = e.target.value.trim(); apply(); });
+
+      /* نطاق السعر */
+      const priceMin = document.getElementById("priceMin");
+      const priceMax = document.getElementById("priceMax");
+      let priceTimer;
+      function onPriceChange() {
+        state.minPrice = priceMin.value === "" ? null : Number(priceMin.value);
+        state.maxPrice = priceMax.value === "" ? null : Number(priceMax.value);
+        document.querySelectorAll(".chip[data-min]").forEach(c => c.classList.remove("active"));
+        apply();
+      }
+      priceMin.addEventListener("input", () => { clearTimeout(priceTimer); priceTimer = setTimeout(onPriceChange, 300); });
+      priceMax.addEventListener("input", () => { clearTimeout(priceTimer); priceTimer = setTimeout(onPriceChange, 300); });
+
+      /* أزرار نطاقات سعر جاهزة */
+      document.querySelectorAll(".chip[data-min]").forEach(chip => {
+        chip.addEventListener("click", () => {
+          document.querySelectorAll(".chip[data-min]").forEach(c => c.classList.remove("active"));
+          chip.classList.add("active");
+          priceMin.value = chip.dataset.min;
+          priceMax.value = chip.dataset.max;
+          state.minPrice = chip.dataset.min === "" ? null : Number(chip.dataset.min);
+          state.maxPrice = chip.dataset.max === "" ? null : Number(chip.dataset.max);
+          apply();
+        });
+      });
+      document.getElementById("btnClearPrice").addEventListener("click", () => {
+        priceMin.value = ""; priceMax.value = "";
+        state.minPrice = null; state.maxPrice = null;
+        document.querySelectorAll(".chip[data-min]").forEach(c => c.classList.remove("active"));
+        apply();
+      });
+
+      /* إعادة الضبط الكامل */
+      function resetAll() {
+        state.cat = "all"; state.material = "all"; state.sort = "relevance";
+        state.q = ""; state.minPrice = null; state.maxPrice = null;
+        document.getElementById("searchBox").value = "";
+        materialSelect.value = "all";
+        document.getElementById("sortFilter").value = "relevance";
+        priceMin.value = ""; priceMax.value = "";
+        document.querySelectorAll("#catChips .chip").forEach(c =>
+          c.classList.toggle("active", c.dataset.cat === "all"));
+        document.querySelectorAll(".chip[data-min]").forEach(c => c.classList.remove("active"));
+        apply();
+      }
+      document.getElementById("btnReset").addEventListener("click", resetAll);
+      document.getElementById("btnResetEmpty").addEventListener("click", resetAll);
+
+      /* ============================ الترشيح والعرض ============================ */
+
+      function currentList() {
+        let list = PRODUCTS.filter(p =>
+          (state.cat === "all" || p.category === state.cat) &&
+          (state.material === "all" || p.material === state.material) &&
+          (state.minPrice === null || p.priceFrom >= state.minPrice) &&
+          (state.maxPrice === null || p.priceFrom <= state.maxPrice) &&
+          (!state.q || (p.name + " " + p.material + " " + p.finish + " " + p.style).includes(state.q))
+        );
+        switch (state.sort) {
+          case "priceAsc":  list = list.slice().sort((a, b) => a.priceFrom - b.priceFrom); break;
+          case "priceDesc": list = list.slice().sort((a, b) => b.priceFrom - a.priceFrom); break;
+          case "rating":    list = list.slice().sort((a, b) => b.rating - a.rating); break;
+        }
+        return list;
+      }
+
+      function apply() {
+        const list = currentList();
+        const grid = document.getElementById("grid");
+        grid.innerHTML = list.map(renderProductCard).join("");
+
+        document.getElementById("emptyState").classList.toggle("d-none", list.length > 0);
+        document.getElementById("resultCount").textContent =
+          "عرض " + list.length + " من " + PRODUCTS.length + " تصميمًا";
+
+        /* إعادة مزامنة أزرار المقارنة مع الحالة الحالية */
+        grid.querySelectorAll(".product-card").forEach(card => {
+          const id = Number(card.dataset.id);
+          if (window.snapshotAppState && snapshotAppState().compare.includes(id)) {
+            const b = card.querySelector(".js-compare");
+            if (b) { b.classList.add("active"); b.setAttribute("aria-pressed", "true"); }
+          }
+        });
+
+        const btn = document.getElementById("btnCompareOpen2");
+        if (btn) btn.disabled = snapshotAppState().compare.length === 0;
+      }
+
+      document.getElementById("btnCompareOpen2").addEventListener("click", openCompareModal);
+
+      /* التشغيل */
+      compareBarInit();
+      apply();
+    })();
+  </script>
+</body>
+</html>
+
